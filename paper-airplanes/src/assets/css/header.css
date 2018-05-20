@@ -1,0 +1,42 @@
+#header{
+  width:100%;
+  height:1.4rem;
+  background:#323237;
+  position:fixed;
+  top:0;
+  left:0;
+  display:flex;
+  z-index:99;
+  transition:all .3s ease;
+}
+.getShow{
+  top:0 !important;
+  opacity:1 !important;
+}
+.getHide{
+  opacity:0 !important;
+  top:-5rem !important;
+}
+#header span{
+  flex:0 0 1;
+  font-size:0.5rem;
+  display:inline-block;
+  line-height:1.4rem;
+  color:#fff;
+}
+#header .back{
+  flex:0 0 25%;
+  width:25%;
+  text-align:center;
+}
+#header .title{
+  text-align:center;
+  flex:0 0 50%;
+  width:50%;
+  font-size:0.55rem;
+  font-weight:600
+}
+    
+    
+    
+    
