@@ -54,7 +54,8 @@ export default {
     width:100%
     height:100%
     top: 0
-    transition: all .3s cubic-bezier(.55,0,.1,1)
+    transition:all .2s ease;
+    // transition: all .3s cubic-bezier(.55,0,.1,1)
   .header
     z-index:99
   .header,.oheader
@@ -68,13 +69,13 @@ export default {
     z-index:98
   .slide-left-enter, .slide-right-leave-active
     opacity: 0
-    -webkit-transform: translate(300px, 0)
-    transform: translate(300px, 0)
+    // -webkit-transform: translate(300px, 0)
+    // transform: translate(300px, 0)
     z-index:99
   .slide-left-leave-active, .slide-right-enter
     opacity: 0
-    -webkit-transform: translate(-300px, 0)
-    transform: translate(-300px, 0)
+    // -webkit-transform: translate(-300px, 0)
+    // transform: translate(-300px, 0)
     z-index:99
   .oLoaDing
     top: 50%
