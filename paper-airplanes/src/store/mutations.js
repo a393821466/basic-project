@@ -5,7 +5,8 @@ import {
   GETINFO,
   PLANESCLOSE,
   NODEDATA,
-  UPDATE_DIRECTION
+  UPDATE_DIRECTION,
+  LOGIN
 } from "./types"
 const state = {
   loading: false,
@@ -13,6 +14,7 @@ const state = {
   nodata: 0,
   footer: true,
   message: [],
+  token: "",
   direction: 'forward',
 };
 const mutations = {
@@ -32,6 +34,11 @@ const mutations = {
   [NODEDATA](state) {
     state.nodata = 0
   },
+  [LOGIN](state, da) {
+    state.token = da.token;
+    sessionStorage.setItem("token", da.token);
+    sessionStorage.setItem("username", JSON.stringify(da.value[0]));
+  },
   [GETINFO](state) {
     let info = state.message;
     if (info[0].content == "") {
@@ -47,7 +54,7 @@ const mutations = {
     state.footer = true
     state.getinfo = false
   },
-  [UPDATE_DIRECTION](state,payload) {
+  [UPDATE_DIRECTION](state, payload) {
     state.direction = payload.direction
   }
 };
@@ -56,7 +63,8 @@ const getters = {
   info: state => state.message,
   getInfo: state => state.getinfo,
   footers: state => state.footer,
-  nodata: state => state.nodata
+  nodata: state => state.nodata,
+  token: state => state.token
 };
 
 export default {

@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import { MessageBox } from "mint-ui";
 import Home from '../components/index.vue'
 import Login from '../components/views/login'
 import getMessage from '../components/views/getMsg'
 import ChatList from '../components/views/chatList'
-import MessageBox from '../components/views/messageBox'
+import MessageBoxs from '../components/views/messageBox'
 
 Router.prototype.goBack = function () {
   this.isBack = true
@@ -15,7 +16,7 @@ Router.prototype.goBack = function () {
 Vue.use(Router);
 
 export default new Router({
-  history: 'mode',
+  history: 'history',
   scrollBehavior() {
     return { x: 0, y: 0 }
   },
@@ -31,11 +32,12 @@ export default new Router({
           component: Login,
           beforeEnter: (to, from, next) => {
             var _this = this;
-            if (to.path && (!sessionStorage.getItem('token'))) {
+            if (!sessionStorage.getItem('token')) {
               next()
             } else {
+              MessageBox("提示", "您已经在登陆状态")
               next({
-                path: '/login',
+                path: '/getMessage',
                 query: { redirect: to.fullPath }
               })
             }
@@ -45,7 +47,7 @@ export default new Router({
           path: '/getMessage',
           name: '',
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requiresAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
           },
           component: getMessage
         },
@@ -53,15 +55,15 @@ export default new Router({
           path: '/messageBox',
           name: 'My Planes',
           meta: {
-            requireAuth: true,
+            requiresAuth: true,
           },
-          component: MessageBox
+          component: MessageBoxs
         },
         {
           path: '/chatList',
           name: '',
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requiresAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
           },
           component: ChatList
         },

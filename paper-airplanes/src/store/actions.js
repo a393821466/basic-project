@@ -14,6 +14,9 @@ export default {
   nodeData: ({ commit }) => {
     commit(types.NODEDATA)
   },
+  login: ({ commit }, data) => {
+    commit(types.LOGIN, data);
+  },
   getMessage: ({ commit }) => {
     http.mockData('/news/index').then(rs => {
       setTimeout(() => {

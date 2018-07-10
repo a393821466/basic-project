@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 //路由钩子
 router.beforeEach((to, from, next) => {
   let token = sessionStorage.getItem('token');
-  if (to.meta.requireAuth) {
+  if (to.meta.requiresAuth) {
     if (!token) {
       next({
         path: '/login',
@@ -43,3 +43,6 @@ new Vue({
 Vue.filter('getYMD', function (input) {
   return input.split(' ')[0];
 })
+export {
+  router
+}
