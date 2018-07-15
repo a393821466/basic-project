@@ -42,6 +42,7 @@ class routerApi {
     var type = data.icon.replace(/data:image\/([^;]+).*/i, '$1');//取类型
     var dataBuffer = new Buffer(base64Data, 'base64');
     var img = await routerApi.a(dataBuffer, type);
+    
     let validate = await util(data);
     if (validate) {
       ctx.status = 500;
