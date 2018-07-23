@@ -18,11 +18,12 @@ export default {
     commit(types.LOGIN, data);
   },
   getMessage: ({ commit }) => {
-    http.mockData('/news/index').then(rs => {
-      setTimeout(() => {
-        commit(types.GETMESSAGE, rs)
-        commit(types.GETINFO)
-      }, 3000)
+    http.fetchGet('/news/index').then(rs => {
+      commit(types.GETMESSAGE, rs)
+      commit(types.GETINFO)
     })
+  },
+  postMessage:({commit})=>{
+    commit(types.SHOWPOSTMES)
   }
 }

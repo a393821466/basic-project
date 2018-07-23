@@ -6,11 +6,13 @@ import {
   PLANESCLOSE,
   NODEDATA,
   UPDATE_DIRECTION,
-  LOGIN
+  LOGIN,
+  SHOWPOSTMES
 } from "./types"
 const state = {
   loading: false,
   getinfo: false,
+  postinfo: false,
   nodata: 0,
   footer: true,
   message: [],
@@ -30,6 +32,9 @@ const mutations = {
     }
     let das = da.value;
     state.message = das.sort(randomsort)
+  },
+  [SHOWPOSTMES](state) {
+    state.postinfo = !state.postinfo
   },
   [NODEDATA](state) {
     state.nodata = 0
@@ -64,7 +69,8 @@ const getters = {
   getInfo: state => state.getinfo,
   footers: state => state.footer,
   nodata: state => state.nodata,
-  token: state => state.token
+  token: state => state.token,
+  postinfo: state => state.postinfo
 };
 
 export default {

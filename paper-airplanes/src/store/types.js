@@ -6,3 +6,5 @@ export const UPDATE_DIRECTION = 'UPDATE_DIRECTION';
 export const PLANESCLOSE = 'PLANESCLOSE'
 export const NODEDATA = 'NODEDATA'
 export const LOGIN = 'LOGIN'
+export const SHOWPOSTMES='SHOWPOSTMES'
+export const HIDEPOSTMES='HIDEPOSTMES'

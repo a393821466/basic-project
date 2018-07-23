@@ -14,7 +14,7 @@
       </div>
       <div class="register" v-if="!loginBox">
         <form enctype="multipart/form-data">
-          <img-inputer id="upload_file" v-model="icon" accept="image/*" theme="light" size="large"/>
+          <img-inputer id="upload_file" v-model="icon" accept="image/*" theme="light" size="large" @onChange="handleFile" ref="inputer" />
           <input type="text" name="username" placeholder="用户名" v-model="reUsername">
           <input type="password" name="password" placeholder="密码" v-model="rePassword"> 
           <input type="password" name="comfrmpassword" placeholder="确认密码" v-model="reComfrmpassword"> 
@@ -44,7 +44,8 @@ export default {
       rePassword: '',
       reComfrmpassword: '',
       nicname: '',
-      icon: ''
+      icon: '',
+      bigSize: 0
     }
   },
   methods: {
@@ -62,14 +63,18 @@ export default {
           MessageBox('提示', er.data.msg)
         })
     },
-    register() {
-      var file = document.querySelector('img').src
+    register(e, b) {
+      let file = document.querySelector('img').src
       let data = {
         username: this.reUsername,
         password: this.rePassword,
         comfrmpassword: this.reComfrmpassword,
         nicname: this.nicname,
         icon: file
+      }
+      if (this.bigSize == 1) {
+        MessageBox('提示', '图片过大，不能大于200k')
+        return
       }
       api
         .fetchPost('/api/register', data)
@@ -87,6 +92,17 @@ export default {
         .catch(er => {
           MessageBox('提示', er.data.msg)
         })
+    },
+    handleFile(e) {
+      let inputDOM = e.size
+      let size = Math.floor(inputDOM / 1024)
+      if (size > 200) {
+        // 这里可以加个文件大小控制
+        MessageBox('提示', '不能大于200k')
+        this.bigSize = 1
+        return false
+      }
+      this.bigSize = 0
     },
     toLogin() {
       this.loginBox = !this.loginBox

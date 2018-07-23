@@ -1,6 +1,6 @@
 <template>
   <div id="footer">
-    <div class="icons req_message">
+    <div class="icons req_message" @click="postMes">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-emizhifeiji"></use>
       </svg>
@@ -23,20 +23,24 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import hub from '../../utlis/hub'
 export default {
   data() {
     return {
-      planes:false
+      planes: false
     }
   },
-  mounted(){
+  mounted() {
   },
   methods: {
+    postMes() {
+      this.$store.dispatch('postMessage')
+    },
     getMes() {
       this.$store.dispatch('getMessage')
     },
-    messageBox(){
-      alert("正在施工啦!!")
+    messageBox() {
+      alert('正在施工啦!!')
     }
   }
 }

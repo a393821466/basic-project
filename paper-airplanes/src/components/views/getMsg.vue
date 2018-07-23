@@ -11,6 +11,9 @@
         </div>
       </transition>
     </div>
+    <div class="postMes" v-if="postinfo">
+      <postMessage></postMessage>
+    </div>
     <transition name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
       <Footer v-show="footers"></Footer>
     </transition>
@@ -19,6 +22,7 @@
 
 <script>
 import api from '../../api/apis.js'
+import PostMessage from '../pages/postMessage.vue'
 import GetMessage from '../pages/getMessage.vue'
 import Footer from '../common/footer.vue'
 import { mapGetters } from 'vuex'
@@ -27,11 +31,12 @@ export default {
   data() {
     return {
       msgOpen: 0,
-      noDataIcon: require('../../assets/font/noData.svg')
+      noDataIcon: require('../../assets/font/noData.svg'),
+      msg: ''
     }
   },
   computed: {
-    ...mapGetters(['getInfo', 'footers', 'nodata'])
+    ...mapGetters(['getInfo', 'footers', 'nodata', 'postinfo'])
   },
   watch: {
     nodata: function(newVal, oldVal) {
@@ -47,11 +52,11 @@ export default {
       this.$store.dispatch('nodeData')
     }
   },
-  mounted(){
-  },
+  mounted() {},
   components: {
     Footer,
     getmessage: GetMessage,
+    postMessage: PostMessage,
     Header
     // planes: Planes
   }
@@ -86,5 +91,5 @@ export default {
       text-align center
       line-height 0.8rem
 .animated
-  animation-duration: 0.3s
+  animation-duration 0.3s
 </style>
