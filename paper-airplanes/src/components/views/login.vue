@@ -64,13 +64,23 @@ export default {
         })
     },
     register(e, b) {
-      let file = document.querySelector('img').src
+      let file = document.querySelector('img');
+      if(!file){
+        MessageBox('提示', '还未上传图片');
+        return;
+      }else{
+        file=document.querySelector('img').src;
+      }
       let data = {
         username: this.reUsername,
         password: this.rePassword,
         comfrmpassword: this.reComfrmpassword,
         nicname: this.nicname,
         icon: file
+      }
+      if(!data.username||!data.password||!data.comfrmpassword||!data.nicname){
+        MessageBox('提示', '信息缺一不可哦，必须要填完');
+        return;
       }
       if (this.bigSize == 1) {
         MessageBox('提示', '图片过大，不能大于200k')
@@ -79,7 +89,7 @@ export default {
       api
         .fetchPost('/api/register', data)
         .then(rs => {
-          if (rs.code) {
+          if (rs.code!==500) {
             MessageBox.confirm('注册成功,直接登录?').then(ok => {
               if (ok) {
                 this.username = data.username
@@ -87,10 +97,13 @@ export default {
                 this.login()
               }
             })
+          }else{
+            MessageBox('提示', rs.msg)
+            return;
           }
-        })
-        .catch(er => {
-          MessageBox('提示', er.data.msg)
+        }).catch(xhr=>{
+          MessageBox('提示', xhr.data.msg)
+          return;
         })
     },
     handleFile(e) {

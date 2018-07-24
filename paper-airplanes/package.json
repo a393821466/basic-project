@@ -10,9 +10,11 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "build": "node build/build.js",
-    "dev": "nodemon start.js"
+    "dev": "nodemon start.js",
+    "inst":"node ./server/config/init.js"
   },
   "dependencies": {
+    "file-type": "^8.1.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "0.0.16",

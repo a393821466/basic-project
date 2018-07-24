@@ -64,7 +64,7 @@ export default {
 
 <style scoped>
 #wind {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -177,7 +177,7 @@ export default {
   -o-transform: rotateY(-180deg);
   -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
-  position: relative;
+  position: absolute;
   background:#fff;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -190,10 +190,11 @@ export default {
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
   width: 90%;
-  margin:0 auto;
+  left:50%;
+  margin-left:-45%;
   display:block;
   height: 10rem;
-  top:1rem;
+  bottom:3.8rem;
 
   -webkit-transition: all 0.8s ease-in-out;
   -moz-transition: all 0.8s ease-in-out;
