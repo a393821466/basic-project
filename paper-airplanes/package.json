@@ -11,7 +11,7 @@
     "test": "npm run unit && npm run e2e",
     "build": "node build/build.js",
     "dev": "nodemon start.js",
-    "inst":"node ./server/config/init.js"
+    "inst": "node ./server/config/init.js"
   },
   "dependencies": {
     "file-type": "^8.1.0",
@@ -24,7 +24,7 @@
     "mongoose": "^5.2.1",
     "nodemon": "^1.17.5",
     "uuid": "^3.3.2",
-    "vue": "^2.5.2",
+    "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

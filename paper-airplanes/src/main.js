@@ -15,7 +15,10 @@ import './mock.js'
 Vue.use(MintUI)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
-
+import { Popup } from 'mint-ui'
+Vue.component(Popup.name, Popup)
+import { Picker } from 'mint-ui'
+Vue.component(Picker.name, Picker)
 //路由钩子
 router.beforeEach((to, from, next) => {
   let token = sessionStorage.getItem('token');

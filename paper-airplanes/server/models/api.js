@@ -21,6 +21,7 @@ class routerApi {
           : ctx.error(500, '两次密码不匹配'),
       icon: query.icon,
       ip: ip,
+      address:query.region,
       nicname: query.nicname,
       create_name: Date.now()
     }
@@ -44,6 +45,7 @@ class routerApi {
       password: md5(md5(data.password) + 'maple'),
       icon: imgUrl,
       ip: data.ip,
+      address:data.address,
       nicname: data.nicname,
       create_name: data.create_name
     })
@@ -80,6 +82,7 @@ class routerApi {
         ip: findUser[0].ip,
         nicname: findUser[0].nicname,
         icon: findUser[0].icon,
+        address:findUser[0].address,
         create_time: findUser[0].create_time
       },
       token: uuid,

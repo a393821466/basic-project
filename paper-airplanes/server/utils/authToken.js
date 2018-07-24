@@ -18,6 +18,8 @@ const authToken = () => {
           username: userMsg.value[0].username,
           ip: userMsg.value[0].ip,
           nicname: userMsg.value[0].nacname,
+          icon: userMsg.value[0].icon,
+          address: userMsg.value[0].address,
           create_time: userMsg.value[0].create_time
         },
         token: userMsg.token,
