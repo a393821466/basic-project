@@ -5,7 +5,7 @@
         <h1>登陆</h1>
         <form>
           <input type="text" name="username" placeholder="用户名" v-model="username">
-          <input type="password" name="password" placeholder="密码" v-model="password">  
+          <input type="password" name="password" placeholder="密码" v-model="password">
         </form>
         <div class="login_btn">
           <input type="button" class="logins" @click="login" value="登陆">
@@ -16,15 +16,15 @@
         <form enctype="multipart/form-data">
           <img-inputer id="upload_file" v-model="icon" accept="image/*" theme="light" size="large" @onChange="handleFile" ref="inputer" />
           <input type="text" name="username" placeholder="用户名" v-model="reUsername">
-          <input type="password" name="password" placeholder="密码" v-model="rePassword"> 
-          <input type="password" name="comfrmpassword" placeholder="确认密码" v-model="reComfrmpassword"> 
-          <input type="text" name="nicname" placeholder="昵称" v-model="nicname"> 
+          <input type="password" name="password" placeholder="密码" v-model="rePassword">
+          <input type="password" name="comfrmpassword" placeholder="确认密码" v-model="reComfrmpassword">
+          <input type="text" name="nicname" placeholder="昵称" v-model="nicname">
           <div class="three-level-address" id="three_level_address">
-          <div class="region-div">
-            <input type="text" placeholder="选择您所在位置" v-model="region" maxlength="80" readonly="readonly" @click="showAddressPicker" />
-            <mt-popup v-model="regionVisible" position="bottom" class="region-popup">
-              <mt-picker :slots="myAddressSlots" valueKey="name" :visibleItemCount	="5" @change="addressChange" :itemHeight="40"></mt-picker>
-            </mt-popup>
+            <div class="region-div">
+              <input type="text" placeholder="选择您所在位置" v-model="region" maxlength="80" readonly="readonly" @click="showAddressPicker" />
+              <mt-popup v-model="regionVisible" position="bottom" class="region-popup">
+                <mt-picker :slots="myAddressSlots" valueKey="name" :visibleItemCount="5" @change="addressChange" :itemHeight="40"></mt-picker>
+              </mt-popup>
             </div>
           </div>
         </form>
@@ -39,6 +39,7 @@
 
 <script>
 import { MessageBox } from 'mint-ui'
+import axios from 'axios'
 import ImgInputer from 'vue-img-inputer'
 import api from '../../api/apis'
 import { mapGetters } from 'vuex'
@@ -123,11 +124,21 @@ export default {
         })
     },
     register(e, b) {
+      // let files = this.icon
+      // let params = new FormData()
+      // params.append('file',files.name)
+      // let config = {
+      //   headers: { 'Content-Type': 'multipart/form-data' }
+      // }
+      // axios.post('/api/register',params,config).then(rs=>{
+      //   console.log(rs);
+      // })
+
       let file = document.querySelector('img')
       if (!file) {
-        MessageBox('提示', '虽然您不是很情愿,但是头像是必须的');
-        return;
-      }else{
+        MessageBox('提示', '虽然您不是很情愿,但是头像是必须的')
+        return
+      } else {
         file = document.querySelector('img').src
       }
       let data = {
@@ -135,14 +146,14 @@ export default {
         password: this.rePassword,
         comfrmpassword: this.reComfrmpassword,
         nicname: this.nicname,
-        region:this.region,
+        region: this.region,
         icon: file
       }
       if (
         !data.username ||
         !data.password ||
         !data.comfrmpassword ||
-        !data.nicname||
+        !data.nicname ||
         !data.region
       ) {
         MessageBox('提示', '信息缺一不可哦，必须要填完')
@@ -197,13 +208,14 @@ export default {
     //picker组件的change事件，进行取值赋值
     addressChange(picker, values) {
       if (this.regionInit) {
-        console.log(values);
+        console.log(values)
         picker.setSlotValues(1, this.getCityArr(values[0]['name']))
         picker.setSlotValues(
           2,
           this.getCountyArr(values[0]['name'], values[1]['name'])
         )
-        this.region = values[0]["name"] +','+ values[1]["name"] +','+ values[2]["name"];
+        this.region =
+          values[0]['name'] + ',' + values[1]['name'] + ',' + values[2]['name']
       } else {
         this.regionInit = true
       }
@@ -262,73 +274,102 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#loginMask
-  position fixed
-  width 100%
-  height 100%
-  top 0
-  left 0
-  background rgba(0, 0, 0, 0.4)
-  z-index 99
-.img-inputer--large
-  width 2rem
-  height 2rem
-  border-radius 50%
-  overflow hidden
-  margin 0 auto
-  display block
-.login, .register
-  margin-top 1rem
-  h1
-    text-align center
-    font-size 0.8rem
-    color #eee
-    margin 1.4rem 0
-input[name='username'], input[name='password'], input[name='comfrmpassword'], input[name='nicname'],.region-div input
-  width 70%
-  height 0.8rem
-  text-indent 0.4rem
-  margin 0.5rem auto
-  display block
-  border-radius 2rem
-  border none
-  outline none
-.login_btn, .register_btn
-  width 70%
-  margin 0 auto
-  .logins
-    background deepskyblue !important
-    float left !important
-  .registers
-    background deepskyblue !important
-    float left !important
-  input[type='button']
-    width 45%
-    height 1rem
-    border-radius 1rem
-    color #fff
-    background crimson
-    border none
-    margin 0.5rem auto 0
-    box-shadow none
-    -webkit-appearance none
-    float right
-.three-level-address
-  width 100%
-  text-align left
-  color #ffffff
-.input-icon
-  display inline-block
-  vertical-align middle
-.input-icon i
-  font-size 2rem
-.region-popup
-  width 100%
-.data-show-div
-  margin-top 1rem
-  margin-left 1rem
-  color #45C473
-.data-show-div span
-  color #ffffff
-  font-size 0.8rem
+#loginMask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+.img-inputer--large {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  display: block;
+}
+
+.login, .register {
+  margin-top: 1rem;
+
+  h1 {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #eee;
+    margin: 1.4rem 0;
+  }
+}
+
+input[name='username'], input[name='password'], input[name='comfrmpassword'], input[name='nicname'], .region-div input {
+  width: 70%;
+  height: 0.8rem;
+  text-indent: 0.4rem;
+  margin: 0.5rem auto;
+  display: block;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+}
+
+.login_btn, .register_btn {
+  width: 70%;
+  margin: 0 auto;
+
+  .logins {
+    background: deepskyblue !important;
+    float: left !important;
+  }
+
+  .registers {
+    background: deepskyblue !important;
+    float: left !important;
+  }
+
+  input[type='button'] {
+    width: 45%;
+    height: 1rem;
+    border-radius: 1rem;
+    color: #fff;
+    background: crimson;
+    border: none;
+    margin: 0.5rem auto 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    float: right;
+  }
+}
+
+.three-level-address {
+  width: 100%;
+  text-align: left;
+  color: #ffffff;
+}
+
+.input-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.input-icon i {
+  font-size: 2rem;
+}
+
+.region-popup {
+  width: 100%;
+}
+
+.data-show-div {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #45C473;
+}
+
+.data-show-div span {
+  color: #ffffff;
+  font-size: 0.8rem;
+}
 </style>

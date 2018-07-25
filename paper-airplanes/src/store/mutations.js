@@ -41,8 +41,9 @@ const mutations = {
   },
   [LOGIN](state, da) {
     state.token = da.token;
+    console.log(da);
     sessionStorage.setItem("token", da.token);
-    sessionStorage.setItem("username", JSON.stringify(da.value[0]));
+    sessionStorage.setItem("username", JSON.stringify(da.value.username));
   },
   [GETINFO](state) {
     let info = state.message;

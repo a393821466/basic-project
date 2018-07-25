@@ -14,6 +14,7 @@
     "inst": "node ./server/config/init.js"
   },
   "dependencies": {
+    "cropperjs": "^1.4.1",
     "file-type": "^8.1.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
@@ -25,6 +26,7 @@
     "nodemon": "^1.17.5",
     "uuid": "^3.3.2",
     "vue": "^2.5.16",
+    "vue-croppa": "^1.3.7",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
