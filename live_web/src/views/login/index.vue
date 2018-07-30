@@ -17,7 +17,7 @@
           <svg-icon icon-class="eye" />
         </span>
       </el-form-item>
-      <el-checkbox style="margin:0px 0px 35px 0px;" @change="checkItem" :checked='remumber' v-model='remumber'>记住密码
+      <el-checkbox style="margin:0px 0px 15px 0px;" @change="checkItem" :checked='remumber' v-model='remumber'>记住密码
       </el-checkbox>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
