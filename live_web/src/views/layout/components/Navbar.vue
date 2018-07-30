@@ -10,11 +10,11 @@
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            Home
+            <span style="display:block;">Home</span>
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span @click="logout" style="display:block;">LogOut</span>
+          <span @click="logout" style="display:block;">登出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -87,5 +87,16 @@ export default {
     }
   }
 }
+.el-dropdown-menu{
+  li{
+    padding:5px 0;
+    margin:0;
+    &:before{
+      display:none;
+    }
+    span{
+      padding:0 20px;
+    }
+  }
+}
 </style>
-
