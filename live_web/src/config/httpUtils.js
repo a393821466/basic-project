@@ -109,6 +109,10 @@ const makeQueryStr = options => {
 export default {
   get: (url, params = {}) => {
     const { query, merchant } = params
+    const merchants =
+      url.indexOf('findMenu') > -1
+        ? ''
+        : merchant || get('MC_SESSION_INFO').merchant
     let queryString = ''
     if (query) {
       queryString = `${url}?${Qs.stringify(query)}`
@@ -119,7 +123,7 @@ export default {
       service
         .get(queryString, {
           headers: {
-            Merchant: merchant || get('MC_SESSION_INFO').merchant
+            Merchant: merchants
           }
         })
         .then(ret => {

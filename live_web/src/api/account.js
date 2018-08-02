@@ -20,6 +20,10 @@ const account = {
     return httpUtils.del(address.account.logout, {
       data: params
     })
+  },
+  // 导航
+  menu: () => {
+    return httpUtils.get(address.menu.getMenu)
   }
 }
 

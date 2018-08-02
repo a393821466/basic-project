@@ -25,7 +25,7 @@ export default {
       'sidebar'
     ]),
     routes() {
-      return this.$router.options.routes
+      return global.antRouter
     },
     isCollapse() {
       return !this.sidebar.opened
