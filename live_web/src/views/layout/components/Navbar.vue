@@ -10,7 +10,7 @@
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            <span style="display:block;">Home</span>
+            <span style="display:block;">返回首页</span>
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>

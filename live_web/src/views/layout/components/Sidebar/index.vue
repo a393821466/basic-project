@@ -9,6 +9,7 @@
       text-color="#bfcbd9"
       active-text-color="#409EFF"
     >
+    <!-- <h1 style="width:80%;margin:0 auto;"><img width='100%' height='50px' style="margin:5px 0;" src="../../../../assets/images/logo/logo.png" alt=""></h1> -->
       <sidebar-item v-for="route in routes" :key="route.name" :item="route" :base-path="route.path"></sidebar-item>
     </el-menu>
   </el-scrollbar>
