@@ -72,8 +72,8 @@ export default {
       if (e === true) {
         this.$message({
           type: 'warning',
-          message: '为了您的账号安全,请勿在公共场所使用记住密码功能',
-          duration: 5000
+          message: '为了您的账号安全,请勿在公共场所使用此功能',
+          duration: 3000
         })
       }
     }
