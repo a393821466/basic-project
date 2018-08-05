@@ -84,8 +84,11 @@ service.interceptors.response.use(
       case 401:
         req401(errors.message)
         break
-      default:
+      case 500:
         reqError(errors.message)
+        break
+      default:
+        reqError('服务器请求超时')
     }
     return Promise.reject(error)
   }

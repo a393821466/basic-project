@@ -6,7 +6,6 @@ import { state } from './mutations'
 export default {
   // 记住密码
   update_remumber: ({ commit }, remumber_flag) => {
-    console.log(remumber_flag)
     return new Promise((resolve, reject) => {
       commit(types.UPDATE_REMUMBER, remumber_flag)
       resolve()
@@ -23,7 +22,8 @@ export default {
   login: ({ commit }, userInfo) => {
     const data = {
       username: userInfo.username.trim(),
-      password: userInfo.password
+      password: userInfo.password,
+      remumber: state.remumber_flag
     }
     return new Promise((resolve, reject) => {
       account

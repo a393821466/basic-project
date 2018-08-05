@@ -21,6 +21,7 @@ export default {
       loginForm: {
         username: '',
         password: ''
+        // remumber: false
       },
       remumber: this.$store.getters.getRemumber,
       loginRules: {
@@ -29,6 +30,7 @@ export default {
         ],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
+      eye: 'eye',
       loading: false,
       pwdType: 'password'
     }
@@ -37,8 +39,10 @@ export default {
     showPwd() {
       if (this.pwdType === 'password') {
         this.pwdType = ''
+        this.eye = 'eye_open'
       } else {
         this.pwdType = 'password'
+        this.eye = 'eye'
       }
     },
     handleLogin() {
@@ -60,7 +64,6 @@ export default {
               this.loading = false
             })
         } else {
-          console.log('error submit!!')
           return false
         }
       })
@@ -77,11 +80,9 @@ export default {
   },
   mounted() {
     if (this.remumber === true) {
-      // this.data.username = this.remumber.remumber_login_info.username
-      // this.data.password = this.remumber.remumber_login_info.token.substring(
-      //   0,
-      //   16
-      // )
+      const info = JSON.parse(localStorage.getItem('MUMBER_INFO'))
+      this.loginForm.username = info.user
+      this.loginForm.password = info.token
     }
   }
 }

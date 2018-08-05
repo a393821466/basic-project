@@ -22,6 +22,11 @@ export const mutations = {
     state.token = info.token
     set('userInfo', info.value)
     set('token', info.token)
+    if (state.remumber_flag === true) {
+      setLocal('MUMBER_INFO', { user: info.value.username, token: info.token })
+    } else {
+      removeLocal('MUMBER_INFO')
+    }
   },
   [DELTOKEN](state, res) {
     if (res.statusCode === true) {
