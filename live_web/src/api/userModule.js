@@ -6,7 +6,7 @@ const userModule = {
   // 查找品牌
   findMerchant: query => {
     return httpUtils.get(address.userModule.findMerchant, {
-      data: query
+      query: query
     })
   }
 }

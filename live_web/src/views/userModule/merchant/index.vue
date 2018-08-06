@@ -30,7 +30,9 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" icon="el-icon-edit"></el-button>
+            <span>
+              <el-button type="primary" size="mini" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
+            </span>
             <el-button size="mini" type="danger" icon="el-icon-delete"></el-button>
           </template>
         </el-table-column>
@@ -50,8 +52,7 @@ export default {
   data() {
     return {
       listLoading: false,
-      page: 1,
-      pageSize: 2,
+      status: 0,
       value: '选项1',
       options: [
         {
@@ -73,6 +74,7 @@ export default {
     ...mapGetters(['getMerchant'])
   },
   mounted() {
+    this.listLoading = true
     this.gettMerchant()
   },
   methods: {
@@ -95,11 +97,17 @@ export default {
       }
       return time('0', JSON.parse(date))
     },
-    gettMerchant(query) {
-      this.$store.dispatch('getMerchant', query)
+    gettMerchant(params) {
+      this.$store.dispatch('getMerchant', params).then(() => {
+        this.listLoading = false
+      })
     },
     handleCurrentChange(val) {
-      this.gettMerchant()
+      this.listLoading = true
+      this.gettMerchant({ page: val })
+    },
+    handleEdit(val) {
+      this.edit = true
     }
   }
 }
