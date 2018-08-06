@@ -20,7 +20,7 @@ export const mutations = {
   [SET_TOKEN](state, info) {
     state.userInfo = info.value
     state.token = info.token
-    set('userInfo', info.value)
+    set('userInfo', info)
     set('token', info.token)
     if (state.remumber_flag === true) {
       setLocal('MUMBER_INFO', { user: info.value.username, token: info.token })

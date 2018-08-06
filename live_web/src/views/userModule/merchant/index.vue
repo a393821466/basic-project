@@ -17,27 +17,41 @@
       </el-form>
     </div>
     <div class="merchant-tables">
-      <el-table :data="tableData" style="width: 100%" v-loading="listLoading" element-loading-text="Loading">
+      <el-table :data="getMerchant.data" style="width: 100%" v-loading="listLoading" element-loading-text="Loading">
         <el-table-column prop="id" label="编号" width="180" sortable :formatter="filterId">
         </el-table-column>
-        <el-table-column prop="name" label="品牌名称" width="180">
+        <el-table-column prop="merchant" label="品牌名称" width="180">
         </el-table-column>
-        <el-table-column prop="address" label="品牌别名">
+        <el-table-column prop="code" label="品牌别名">
         </el-table-column>
-        <el-table-column prop="state.info" label="状态" :formatter="formaState">
+        <el-table-column prop="status" label="状态" :formatter="formaState">
         </el-table-column>
-        <el-table-column prop="date" label="创建日期" width="180">
+        <el-table-column prop="create_time" label="创建日期" width="180" :formatter="formDates">
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini" icon="el-icon-edit"></el-button>
+            <el-button size="mini" type="danger" icon="el-icon-delete"></el-button>
+          </template>
         </el-table-column>
       </el-table>
+      <div class="pages">
+        <el-pagination background layout="prev, pager, next" :page-size='getMerchant.pageSize' :total="getMerchant.totelPage" @current-change="handleCurrentChange">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { time } from '@/utils/common'
 export default {
   data() {
     return {
       listLoading: false,
+      page: 1,
+      pageSize: 2,
       value: '选项1',
       options: [
         {
@@ -52,38 +66,14 @@ export default {
           value: '选项3',
           label: '未启用'
         }
-      ],
-      tableData: [
-        {
-          id: 1,
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀',
-          state: 1
-        },
-        {
-          id: 2,
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普',
-          state: 0
-        },
-        {
-          id: 3,
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀',
-          state: 1
-        },
-        {
-          id: 4,
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀',
-          state: 1
-        }
       ]
     }
+  },
+  computed: {
+    ...mapGetters(['getMerchant'])
+  },
+  mounted() {
+    this.gettMerchant()
   },
   methods: {
     filterId(value, row) {
@@ -91,12 +81,25 @@ export default {
     },
     formaState(row) {
       let state = ''
-      if (row.state === 0) {
+      if (row.status === 0) {
         state = '未启用'
       } else {
         state = '启用'
       }
       return state
+    },
+    formDates(row, column) {
+      const date = row[column.property]
+      if (date === undefined) {
+        return ''
+      }
+      return time('0', JSON.parse(date))
+    },
+    gettMerchant(query) {
+      this.$store.dispatch('getMerchant', query)
+    },
+    handleCurrentChange(val) {
+      this.gettMerchant()
     }
   }
 }

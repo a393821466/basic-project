@@ -115,7 +115,7 @@ export default {
     const merchants =
       url.indexOf('findMenu') > -1
         ? ''
-        : merchant || get('MC_SESSION_INFO').merchant
+        : merchant || get('userInfo').merchant
     let queryString = ''
     if (query) {
       queryString = `${url}?${Qs.stringify(query)}`
