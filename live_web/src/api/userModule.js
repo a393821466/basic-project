@@ -8,6 +8,18 @@ const userModule = {
     return httpUtils.get(address.userModule.findMerchant, {
       query: query
     })
+  },
+  // 更新品牌状态
+  updateMerchant: params => {
+    return httpUtils.post(address.userModule.updateMerchant, {
+      data: params
+    })
+  },
+  // 删除品牌
+  deleteMerchant: query => {
+    return httpUtils.del(address.userModule.delMerchant, {
+      data: query
+    })
   }
 }
 

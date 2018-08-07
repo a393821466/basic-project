@@ -8,3 +8,39 @@
   width: 400px;
   margin: 20px auto 0;
 }
+.stateStatus{
+  width:12px;
+  height:12px;
+  background:#ccc;
+  display:block;
+  border-radius:50%;
+}
+.statusOpen{
+  background:#409EFF
+}
+.delMerchantList{
+  display:inline-block
+}
+.statusOff{
+  background:#ccc
+}
+.el-pagination{
+  margin-bottom:20px;
+}
+.el-table th.is-leaf {
+  background: #f8f8f8;
+}
+@media (max-width: 767px){
+  .statusInputs{
+    display:block !important;
+  }
+  .merchant-tables{
+    margin-top:15px;
+  }
+  .del_tables{
+    margin-top:10px;
+  }
+  .el-button+.el-button{
+    margin-left:0;
+  }
+}
