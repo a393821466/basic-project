@@ -5,9 +5,20 @@ export default {
   },
   data() {
     return {
+      slots: `添加品牌`,
+      value: '1',
+      options: [
+        {
+          value: '1',
+          label: '启用'
+        },
+        {
+          value: '0',
+          label: '不启用'
+        }
+      ],
       form: {
         name: '',
-        region: '',
         date1: '',
         date2: '',
         delivery: false,
@@ -16,11 +27,14 @@ export default {
         desc: ''
       },
       close: false,
-      formLabelWidth: '120px'
+      formLabelWidth: '100px'
     }
   },
   methods: {
     dialogOff() {
+      this.$store.dispatch('dialogOff')
+    },
+    closeDialog() {
       this.$store.dispatch('dialogOff')
     }
   }

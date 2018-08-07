@@ -7,7 +7,7 @@
           </el-input>
         </el-form-item>
         <el-form-item label="状态" class="statusInputs">
-          <el-select class="statusInput" v-model="value" placeholder="请选择">
+          <el-select class="statusInput" v-model="value" placeholder="请选择状态">
             <el-option v-for="(item,index) in options" :key="index" :value="item.value" :label="item.label">
             </el-option>
           </el-select>
