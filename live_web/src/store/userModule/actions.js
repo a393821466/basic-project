@@ -8,8 +8,9 @@ export default {
         .findMerchant(query)
         .then(res => {
           const da = res.value
+          let arrayOfSquares = ''
           if (da.data.length > 0) {
-            const arrayOfSquares = da.data.map(v => {
+            arrayOfSquares = da.data.map(v => {
               v.loading = false
               if (v.status === 1) {
                 v.edit = true
@@ -18,8 +19,11 @@ export default {
               }
               return da
             })
-            commit(types.FINDMERCHANT, arrayOfSquares)
           }
+          commit(
+            types.FINDMERCHANT,
+            da.data.length > 0 ? arrayOfSquares : da
+          )
           resolve(da)
         })
         .catch(xhr => {
@@ -65,5 +69,23 @@ export default {
   // 添加品牌弹出框关闭
   dialogOff: ({ commit }) => {
     commit(types.MERCHANTBOXOFF)
+  },
+  // 添加品牌
+  addMerchant: ({ commit }, query) => {
+    return new Promise((resolve, reject) => {
+      const da = {
+        merchant: query.merchantName,
+        code: query.merchantViceName,
+        status: query.value
+      }
+      userModules
+        .addMerchant(da)
+        .then(rs => {
+          resolve(rs)
+        })
+        .catch(xhr => {
+          reject(xhr)
+        })
+    })
   }
 }

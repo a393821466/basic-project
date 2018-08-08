@@ -3,6 +3,12 @@ import address from './address.config'
 // import deploy from '../config/basic.config'
 
 const userModule = {
+  // 添加品牌
+  addMerchant: params => {
+    return httpUtils.post(address.userModule.addMerchant, {
+      data: params
+    })
+  },
   // 查找品牌
   findMerchant: query => {
     return httpUtils.get(address.userModule.findMerchant, {

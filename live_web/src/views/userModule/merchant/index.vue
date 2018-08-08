@@ -18,7 +18,7 @@
     </div>
     <div class="merchant-tables">
       <el-table :data="getMerchant.data" style="width: 100%" v-loading="listLoading" element-loading-text="Loading">
-        <el-table-column prop="id" label="编号" width="180" sortable :formatter="filterId">
+        <el-table-column prop="id" label="序号" width="180" sortable :formatter="filterId">
         </el-table-column>
         <el-table-column prop="merchant" label="品牌名称" width="180">
         </el-table-column>

@@ -38,7 +38,7 @@ export default {
     })
   },
   logout: ({ commit }) => {
-    const userId = !state.userInfo.id ? get('userInfo').id : state.userInfo.id
+    const userId = !state.userInfo.id ? get('userInfo').value.id : state.userInfo.id
     return new Promise((resolve, reject) => {
       account
         .logout({ id: userId })

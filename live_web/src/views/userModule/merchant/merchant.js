@@ -58,9 +58,6 @@ export default {
       this.$store
         .dispatch('getMerchant', params)
         .then(rs => {
-          if (rs.data.length <= 0) {
-            this.$message.error('没有找到符合条件的数据')
-          }
           this.listLoading = false
         })
         .catch(xhr => {

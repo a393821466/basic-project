@@ -7,7 +7,7 @@ export const state = {
 
 export const mutations = {
   [FINDMERCHANT](state, res) {
-    state.merchantData = res[0]
+    state.merchantData = !res.data ? res[0] : res.data
   },
   [ADDMERCHANTBOX](state) {
     state.openMerchantBox = true
