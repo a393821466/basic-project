@@ -67,6 +67,7 @@ export default {
     onConfirm() {
       this.loading = true
       this.$refs.ruleForm.validate(valid => {
+        this.loading = false
         if (valid) {
           this.$store.dispatch('addMerchant', this.ruleForm).then(rs => {
             if (rs.statusCode) {
@@ -75,7 +76,6 @@ export default {
                 type: 'success'
               })
               this.common()
-              this.loading = false
               this.$store.dispatch('dialogOff')
               this.$store.dispatch('getMerchant')
             }

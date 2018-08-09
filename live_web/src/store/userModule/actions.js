@@ -20,10 +20,7 @@ export default {
               return da
             })
           }
-          commit(
-            types.FINDMERCHANT,
-            da.data.length > 0 ? arrayOfSquares : da
-          )
+          commit(types.FINDMERCHANT, da.data.length > 0 ? arrayOfSquares : da)
           resolve(da)
         })
         .catch(xhr => {
@@ -81,6 +78,24 @@ export default {
       userModules
         .addMerchant(da)
         .then(rs => {
+          resolve(rs)
+        })
+        .catch(xhr => {
+          reject(xhr)
+        })
+    })
+  },
+  // 用户组获取全部品牌
+  groupGetMerchant({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules
+        .findMerchant(query)
+        .then(rs => {
+          const da = rs.value
+          if (da.data.length > 0) {
+            da.data.unshift({ code: 'all', merchant: '全部' })
+          }
+          commit(types.GROUPMERCHANT, da)
           resolve(rs)
         })
         .catch(xhr => {
