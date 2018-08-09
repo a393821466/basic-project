@@ -34,12 +34,9 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" icon="el-icon-circle-close-outline" type="info" size="small" v-if="scope.row.edit" :loading="scope.row.loading">停用</el-button>
-            <el-button @click="handleClick(scope.row)" icon="el-icon-circle-check-outline" type="primary" size="small" v-else :loading="scope.row.loading">启用</el-button>
-
-            <div class="delMerchantList">
-              <el-button icon="el-icon-delete" class="del_tables" size="small" type="danger" @click="deleteMerchant(scope.row)">删除</el-button>
-            </div>
+            <el-button @click="handleClick(scope.row)" icon="el-icon-close" type="info" size="small" v-if="scope.row.edit" :loading="scope.row.loading" title='关闭' circle></el-button>
+            <el-button @click="handleClick(scope.row)" icon="el-icon-check" type="primary" size="small" v-else :loading="scope.row.loading" title='开启' circle></el-button>
+            <el-button icon="el-icon-delete" class="del_tables" size="small" type="danger" @click="deleteMerchant(scope.row)" title='删除品牌' circle></el-button>
           </template>
         </el-table-column>
       </el-table>

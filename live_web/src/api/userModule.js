@@ -26,6 +26,12 @@ const userModule = {
     return httpUtils.del(address.userModule.delMerchant, {
       data: query
     })
+  },
+  // 找品牌用户组
+  findMerchantGroup: query => {
+    return httpUtils.get(address.userModule.findGroup, {
+      query: query
+    })
   }
 }
 

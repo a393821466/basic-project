@@ -2,13 +2,15 @@ import {
   FINDMERCHANT,
   ADDMERCHANTBOX,
   MERCHANTBOXOFF,
-  GROUPMERCHANT
+  GROUPMERCHANT,
+  FINDMERCHANTGROUP
 } from './types'
 
 export const state = {
   merchantData: [],
   openMerchantBox: false,
-  groupMerchant: []
+  groupMerchant: [],
+  groupArray: []
 }
 
 export const mutations = {
@@ -23,11 +25,15 @@ export const mutations = {
   },
   [GROUPMERCHANT](state, res) {
     state.groupMerchant = res.data
+  },
+  [FINDMERCHANTGROUP](state, res) {
+    state.groupArray = !res.data ? res[0] : res.data
   }
 }
 
 export const getters = {
   getMerchant: state => state.merchantData,
   openMerchantBox: state => state.openMerchantBox,
-  groupMerchant: state => state.groupMerchant
+  groupMerchant: state => state.groupMerchant,
+  groupArray: state => state.groupArray
 }

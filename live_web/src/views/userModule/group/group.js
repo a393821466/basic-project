@@ -5,35 +5,15 @@ export default {
       da: '',
       value: '',
       merchanrNickname: '',
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        },
-        {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
-      ]
+      listLoading: false
     }
   },
   computed: {
-    ...mapGetters(['groupMerchant'])
+    ...mapGetters(['groupMerchant', 'groupArray'])
   },
   mounted() {
     this.getMerchant()
+    this.groupSearch()
   },
   methods: {
     addGroup() {
@@ -44,14 +24,30 @@ export default {
         code: this.value === 'all' ? '' : this.value,
         groupname: this.merchanrNickname
       }
-      console.log(da)
-      // this.$store.dispatch('findMerchantGroup',)
+      this.listLoading = true
+      this.$store.dispatch('findMerchantGroup', da).then(result => {
+        this.listLoading = false
+      }).catch(er => {
+        this.listLoading = false
+      })
     },
     getMerchant() {
       this.$store.dispatch('groupGetMerchant', { pagesize: 100 })
     },
     formatter(row, column) {
       return row.address
+    },
+    handleCurrentChange(val) {
+      console.log(val)
+    },
+    handleEdit(row) {
+      console.log(row)
+    },
+    handleLook(row) {
+      console.log(row)
+    },
+    handleDel(row) {
+      console.log(row)
     }
   }
 }

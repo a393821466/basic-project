@@ -23,8 +23,8 @@ export default {
           commit(types.FINDMERCHANT, da.data.length > 0 ? arrayOfSquares : da)
           resolve(da)
         })
-        .catch(xhr => {
-          reject(xhr)
+        .catch(err => {
+          reject(err)
         })
     })
   },
@@ -41,8 +41,8 @@ export default {
           // commit(types.UPDATESTATUS, rs)
           resolve(rs)
         })
-        .catch(xhr => {
-          reject(xhr)
+        .catch(err => {
+          reject(err)
         })
     })
   },
@@ -54,8 +54,8 @@ export default {
         .then(rs => {
           resolve(rs)
         })
-        .catch(xhr => {
-          reject(xhr)
+        .catch(err => {
+          reject(err)
         })
     })
   },
@@ -80,8 +80,8 @@ export default {
         .then(rs => {
           resolve(rs)
         })
-        .catch(xhr => {
-          reject(xhr)
+        .catch(err => {
+          reject(err)
         })
     })
   },
@@ -98,9 +98,29 @@ export default {
           commit(types.GROUPMERCHANT, da)
           resolve(rs)
         })
-        .catch(xhr => {
-          reject(xhr)
+        .catch(err => {
+          reject(err)
         })
+    })
+  },
+  // 全部用户组
+  findMerchantGroup({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules.findMerchantGroup(query).then(rs => {
+        const da = rs.value
+        let arrayOfSquares = ''
+        if (da.data.length > 0) {
+          arrayOfSquares = da.data.map(v => {
+            v.loading = false
+            v.edit = false
+            return da
+          })
+        }
+        commit(types.FINDMERCHANTGROUP, da.data.length > 0 ? arrayOfSquares : da)
+        resolve(da)
+      }).catch(err => {
+        reject(err)
+      })
     })
   }
 }

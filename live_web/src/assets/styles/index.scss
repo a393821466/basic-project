@@ -79,11 +79,15 @@ a:hover {
   padding: 20px;
 }
 
+.el-pagination {
+  width: 400px;
+  margin: 20px auto;
+}
 
 @media (max-width: 639px) {
-  .el-form-item__label{
-    width:100%;
-    text-align:left;
-    display:block;
+  .el-form-item__label {
+    width: 100%;
+    text-align: left;
+    display: block;
   }
 }

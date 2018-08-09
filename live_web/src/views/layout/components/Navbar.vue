@@ -87,15 +87,15 @@ export default {
     }
   }
 }
-.el-dropdown-menu{
-  li{
-    padding:5px 0;
-    margin:0;
-    &:before{
-      display:none;
+.el-dropdown-menu {
+  li {
+    padding: 5px 0;
+    margin: 0;
+    &:before {
+      display: none;
     }
-    span{
-      padding:0 20px;
+    span {
+      padding: 0 20px;
     }
   }
 }

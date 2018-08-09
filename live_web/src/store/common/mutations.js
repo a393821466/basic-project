@@ -7,11 +7,11 @@ import {
   DEL_OTHERS_VIEWS,
   DEL_ALL_VIEWS
 } from './types'
-import { set, getNoParser } from '@/utils/storage'
+import { set, get } from '@/utils/storage'
 
 export const state = {
   sidebar: {
-    opened: getNoParser('sidebarStatus'),
+    opened: get('sidebarStatus'),
     withoutAnimation: false
   },
   visitedViews: [],
@@ -23,15 +23,15 @@ export const mutations = {
   // 导航状态存储
   [TOGGLE_SIDEBAR](state) {
     if (state.sidebar.opened) {
-      set('sidebarStatus', 1)
+      set('sidebarStatus', true)
     } else {
-      set('sidebarStatus', 0)
+      set('sidebarStatus', false)
     }
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
   },
   [CLOSE_SIDEBAR](state, withoutAnimation) {
-    set('sidebarStatus', 1)
+    set('sidebarStatus', true)
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   },

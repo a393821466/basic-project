@@ -17,18 +17,29 @@
       </el-form>
     </div>
     <div class="merchant-tables">
-      <el-table :data="tableData" style="width: 100%" :default-sort="{prop: 'date', order: 'descending'}">
-        <el-table-column prop="date" label="日期" sortable width="180">
+      <el-table :data="groupArray.data" style="width: 100%" v-loading="listLoading">
+        <el-table-column prop="id" label="序号" width='80' sortable>
         </el-table-column>
-        <el-table-column prop="name" label="姓名" sortable width="180">
+        <el-table-column prop="name" label="用户组名称">
         </el-table-column>
-        <el-table-column prop="address" label="地址" :formatter="formatter">
+        <el-table-column prop="introduce" label="用户组介绍">
+        </el-table-column>
+        <el-table-column prop="merchant" label="品牌别名">
+        </el-table-column>
+        <el-table-column prop="icon" label="图标">
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button type="primary" title='编辑组' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>
+            <el-button title='查看组用户' icon="el-icon-search" @click="handleLook(scope.row)" circle></el-button>
+            <el-button title='删除组' type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
+          </template>
         </el-table-column>
       </el-table>
-      <!-- <div class="pages">
-        <el-pagination background layout="prev, pager, next" :page-size='getMerchant.pageSize' :total="getMerchant.totelPage" @current-change="handleCurrentChange">
+      <div class="pages">
+        <el-pagination background layout="prev, pager, next" :page-size='groupArray.pageSize' :total="groupArray.totelPage" @current-change="handleCurrentChange">
         </el-pagination>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

@@ -1,3 +1,9 @@
-.addgroup-btn{
-  float:right;
+.addgroup-btn {
+  float: right;
+}
+
+@media (max-width: 767px) {
+  .el-button+.el-button {
+    margin: 5px 0px;
+  }
 }

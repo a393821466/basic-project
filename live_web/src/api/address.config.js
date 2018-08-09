@@ -16,6 +16,7 @@ export default {
     findMerchant: `${apis}/user/findMerchant`,
     delMerchant: `${apis}/user/delMerchant`,
     updateMerchant: `${apis}/user/updateMerchant`,
-    userManagement: `${apis}/user/userManagement`
+    userManagement: `${apis}/user/userManagement`,
+    findGroup: `${apis}/user/findGroup`
   }
 }
