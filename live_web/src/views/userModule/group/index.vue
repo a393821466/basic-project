@@ -41,6 +41,7 @@
         </el-pagination>
       </div>
     </div>
+    <add-group :openGroupBox="openMerchantBox"></add-group>
   </div>
 </template>
 <script>

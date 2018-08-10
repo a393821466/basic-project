@@ -1,4 +1,5 @@
 import { mapGetters } from 'vuex'
+import addGroup from './addGroup/'
 export default {
   data() {
     return {
@@ -8,34 +9,37 @@ export default {
       listLoading: false
     }
   },
+  components: {
+    addGroup
+  },
   computed: {
-    ...mapGetters(['groupMerchant', 'groupArray'])
+    ...mapGetters(['groupMerchant', 'groupArray', 'openMerchantBox'])
   },
   mounted() {
     this.getMerchant()
     this.groupSearch()
   },
   methods: {
-    addGroup() {
-      console.log('addGroup')
-    },
     groupSearch() {
       const da = {
         code: this.value === 'all' ? '' : this.value,
         groupname: this.merchanrNickname
       }
       this.listLoading = true
-      this.$store.dispatch('findMerchantGroup', da).then(result => {
-        this.listLoading = false
-      }).catch(er => {
-        this.listLoading = false
-      })
+      this.$store
+        .dispatch('findMerchantGroup', da)
+        .then(result => {
+          this.listLoading = false
+        })
+        .catch(er => {
+          this.listLoading = false
+        })
     },
     getMerchant() {
       this.$store.dispatch('groupGetMerchant', { pagesize: 100 })
     },
-    formatter(row, column) {
-      return row.address
+    addGroup() {
+      this.$store.dispatch('dialogFormVisible')
     },
     handleCurrentChange(val) {
       console.log(val)

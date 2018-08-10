@@ -27,20 +27,5 @@ export default addMerchantBox
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-.el-dialog {
-  width: 35%;
-}
-.el-input {
-  width: 90%;
-}
-@media (max-width: 1023px) {
-  .el-dialog {
-    width: 50%;
-  }
-}
-@media (max-width: 767px) {
-  .el-dialog {
-    width: 90%;
-  }
-}
+
 </style>
