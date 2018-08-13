@@ -1,7 +1,10 @@
 .addgroup-btn {
   float: right;
 }
-
+.groupIcon{
+  width:35px;
+  height:35px;
+}
 @media (max-width: 767px) {
   .el-button+.el-button {
     margin: 5px 0px;

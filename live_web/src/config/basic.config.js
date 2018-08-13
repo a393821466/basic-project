@@ -1,4 +1,4 @@
 const config = {
-  merchant: 'oppo'
+  merchant: 'apple'
 }
 export default config

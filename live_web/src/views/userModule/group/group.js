@@ -1,5 +1,6 @@
 import { mapGetters } from 'vuex'
 import addGroup from './addGroup/'
+import editGroup from './editGroup/'
 export default {
   data() {
     return {
@@ -10,14 +11,21 @@ export default {
     }
   },
   components: {
-    addGroup
+    addGroup,
+    editGroup
   },
   computed: {
-    ...mapGetters(['groupMerchant', 'groupArray', 'openMerchantBox'])
+    ...mapGetters([
+      'groupMerchant',
+      'groupArray',
+      'openMerchantBox',
+      'singData'
+    ])
   },
   mounted() {
     this.getMerchant()
     this.groupSearch()
+    // console.log(this.groupMerchant)
   },
   methods: {
     groupSearch() {
@@ -38,14 +46,14 @@ export default {
     getMerchant() {
       this.$store.dispatch('groupGetMerchant', { pagesize: 100 })
     },
-    addGroup() {
+    addGroup(val) {
       this.$store.dispatch('dialogFormVisible')
     },
     handleCurrentChange(val) {
       console.log(val)
     },
     handleEdit(row) {
-      console.log(row)
+      this.$store.dispatch('changeGroupBoxShow', row)
     },
     handleLook(row) {
       console.log(row)

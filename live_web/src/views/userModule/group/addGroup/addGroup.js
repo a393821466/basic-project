@@ -20,6 +20,7 @@ export default {
       formLabelWidth: '100px',
       loading: false,
       groupMerchantName: '',
+      bigSize: 0,
       ruleForm: {
         name: '',
         introduce: '',
@@ -36,14 +37,55 @@ export default {
     ...mapGetters(['groupMerchant'])
   },
   methods: {
+    clearInput() {
+      this.ruleForm.name = ''
+      this.ruleForm.value = ''
+      this.ruleForm.introduce = ''
+    },
     onConfirm(ruleForm) {
+      const file = document.querySelector('.img-inputer__preview-img').src
+      this.ruleForm.file = file
+      if (this.bigSize === 1) {
+        this.$message({ message: '图标不能大于200k', type: 'error' })
+        return
+      }
       this.$refs.ruleForm.validate(valid => {
+        const da = {
+          code: this.ruleForm.value,
+          groupName: this.ruleForm.name
+        }
         if (valid) {
-          console.log(111)
+          this.$store
+            .dispatch('addGroup', this.ruleForm)
+            .then(rs => {
+              this.$message({
+                message: `成功给${this.ruleForm.value}添加 ${
+                  this.ruleForm.name
+                } 用户组`,
+                type: 'success'
+              })
+              this.$store.dispatch('dialogOff')
+              this.$store.dispatch('findMerchantGroup', da)
+              this.clearInput()
+            })
+            .catch(err => {
+              return err
+            })
         } else {
           return false
         }
       })
+    },
+    handleFile(e) {
+      const inputDOM = e.size
+      const size = Math.floor(inputDOM / 1024)
+      if (size > 200) {
+        // 这里可以加个文件大小控制
+        this.$message({ message: '图标不能大于200k', type: 'error' })
+        this.bigSize = 1
+        return false
+      }
+      this.bigSize = 0
     },
     dialogOff() {
       this.$store.dispatch('dialogOff')

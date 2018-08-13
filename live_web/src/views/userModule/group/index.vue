@@ -2,15 +2,15 @@
   <div class="app-group">
     <div class="filter-container">
       <el-form ref="form" :inline="true">
+        <el-form-item label="用户组名称">
+          <el-input v-model="merchanrNickname" style="width: 200px;" class="filter-item" placeholder="用户组名称">
+          </el-input>
+        </el-form-item>
         <el-form-item label="品牌名" class="statusInputs">
           <el-select class="statusInput" v-model="value" placeholder="全部">
             <el-option v-for="(item,index) in groupMerchant" :key="index" :value="item.code" :label="item.merchant">
             </el-option>
           </el-select>
-        </el-form-item>
-        <el-form-item label="用户组名称">
-          <el-input v-model="merchanrNickname" style="width: 200px;" class="filter-item" placeholder="用户组名称">
-          </el-input>
         </el-form-item>
         <el-button class="search-btn" @click="groupSearch" style="margin-left:10px;" type="primary" icon="el-icon-search">搜索</el-button>
         <el-button class="addgroup-btn" type="primary" icon="el-icon-plus" @click="addGroup">添加用户组</el-button>
@@ -27,6 +27,10 @@
         <el-table-column prop="merchant" label="品牌别名">
         </el-table-column>
         <el-table-column prop="icon" label="图标">
+          <template slot-scope="scope">
+            <img v-if='!scope.row.icon' src="../../../assets/images/group/groupIcon.png" class="groupIcon"/>
+            <img :src="scope.row.icon" v-else class="groupIcon"/>
+          </template>
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
@@ -42,6 +46,7 @@
       </div>
     </div>
     <add-group :openGroupBox="openMerchantBox"></add-group>
+    <edit-group :singData="singData"></edit-group>
   </div>
 </template>
 <script>

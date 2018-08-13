@@ -3,14 +3,17 @@ import {
   ADDMERCHANTBOX,
   MERCHANTBOXOFF,
   GROUPMERCHANT,
-  FINDMERCHANTGROUP
+  FINDMERCHANTGROUP,
+  CHANGEBOXSHOW,
+  CHANGBOXHIDE
 } from './types'
 
 export const state = {
   merchantData: [],
   openMerchantBox: false,
   groupMerchant: [],
-  groupArray: []
+  groupArray: [],
+  singleData: {}
 }
 
 export const mutations = {
@@ -28,6 +31,13 @@ export const mutations = {
   },
   [FINDMERCHANTGROUP](state, res) {
     state.groupArray = !res.data ? res[0] : res.data
+  },
+  [CHANGEBOXSHOW](state, res) {
+    res.edit = true
+    state.singleData = res
+  },
+  [CHANGBOXHIDE](state) {
+    state.singleData.edit = false
   }
 }
 
@@ -35,5 +45,6 @@ export const getters = {
   getMerchant: state => state.merchantData,
   openMerchantBox: state => state.openMerchantBox,
   groupMerchant: state => state.groupMerchant,
-  groupArray: state => state.groupArray
+  groupArray: state => state.groupArray,
+  singData: state => state.singleData
 }

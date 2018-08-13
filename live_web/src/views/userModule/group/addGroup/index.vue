@@ -12,7 +12,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label='图标' :label-width="formLabelWidth">
-          <img-inputer class="groupIcon" v-model="ruleForm.file" theme="light" size="large"></img-inputer>
+          <img-inputer @onChange="handleFile" accept="image/*" class="groupIcon" v-model="ruleForm.file" theme="light" size="large"></img-inputer>
         </el-form-item>
         <el-form-item label="介绍" :label-width="formLabelWidth" prop="introduce">
           <el-input v-model="ruleForm.introduce" auto-complete="off" type="textarea"></el-input>

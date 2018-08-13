@@ -32,6 +32,18 @@ const userModule = {
     return httpUtils.get(address.userModule.findGroup, {
       query: query
     })
+  },
+  // 添加用户组
+  addGroup: params => {
+    return httpUtils.post(address.userModule.addUserGroup, {
+      data: params
+    })
+  },
+  // 修改用户组
+  updateGroup: params => {
+    return httpUtils.post(address.userModule.updateGroup, {
+      data: params
+    })
   }
 }
 
