@@ -26,7 +26,7 @@
         </el-table-column>
         <el-table-column prop="merchant" label="品牌别名">
         </el-table-column>
-        <el-table-column prop="icon" label="图标">
+        <el-table-column prop="icon" label="图标"  class="iconWidth">
           <template slot-scope="scope">
             <img v-if='!scope.row.icon' src="../../../assets/images/group/groupIcon.png" class="groupIcon"/>
             <img :src="scope.row.icon" v-else class="groupIcon"/>
@@ -34,9 +34,10 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
+            <el-button type="warning" title='添加权限' @click="handleCompetence(scope.row)" icon="el-icon-setting" v-if="scope.row.power==0" circle></el-button>
             <el-button type="primary" title='编辑组' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>
             <el-button title='查看组用户' icon="el-icon-search" @click="handleLook(scope.row)" circle></el-button>
-            <el-button title='删除组' type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
+            <el-button title='删除组' v-if="scope.row.power==0" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
           </template>
         </el-table-column>
       </el-table>

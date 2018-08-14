@@ -43,7 +43,9 @@ export default {
       this.ruleForm.introduce = ''
     },
     onConfirm(ruleForm) {
-      const file = document.querySelector('.img-inputer__preview-img').src
+      const file = !document.querySelector('.img-inputer__preview-img')
+        ? ''
+        : document.querySelector('.img-inputer__preview-img').src
       this.ruleForm.file = file
       if (this.bigSize === 1) {
         this.$message({ message: '图标不能大于200k', type: 'error' })

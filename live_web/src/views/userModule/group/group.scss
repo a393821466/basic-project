@@ -5,8 +5,14 @@
   width:35px;
   height:35px;
 }
+.iconWidth{
+  width:130px
+}
 @media (max-width: 767px) {
   .el-button+.el-button {
     margin: 5px 0px;
+  }
+  .iconWidth{
+    width:auto;
   }
 }

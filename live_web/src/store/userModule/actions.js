@@ -173,5 +173,15 @@ export default {
         reject(err)
       })
     })
+  },
+  // 删除用户组
+  delGroupUser({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules.delGroup(query).then(rs => {
+        resolve(rs)
+      }).catch(err => {
+        reject(err)
+      })
+    })
   }
 }

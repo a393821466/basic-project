@@ -8,6 +8,7 @@ export default {
       value: '',
       merchanrNickname: '',
       listLoading: false
+      // formLabelWidth: '100px'
     }
   },
   components: {
@@ -50,7 +51,13 @@ export default {
       this.$store.dispatch('dialogFormVisible')
     },
     handleCurrentChange(val) {
-      console.log(val)
+      this.listLoading = true
+      this.$store.dispatch('findMerchantGroup', { page: val }).then(rs => {
+        this.listLoading = false
+      })
+    },
+    handleCompetence(row) {
+      console.log('权限' + row)
     },
     handleEdit(row) {
       this.$store.dispatch('changeGroupBoxShow', row)
@@ -59,7 +66,25 @@ export default {
       console.log(row)
     },
     handleDel(row) {
-      console.log(row)
+      this.$confirm(`您确定删除该用户组吗?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          this.listLoading = true
+          this.$store
+            .dispatch('delGroupUser', { id: row.id })
+            .then(result => {
+              this.listLoading = false
+              this.$store.dispatch('findMerchantGroup')
+            })
+            .catch(err => {
+              this.listLoading = false
+              return err
+            })
+        })
+        .catch(() => {})
     }
   }
 }

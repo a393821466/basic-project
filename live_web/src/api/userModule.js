@@ -44,6 +44,18 @@ const userModule = {
     return httpUtils.post(address.userModule.updateGroup, {
       data: params
     })
+  },
+  // 删除用户组
+  delGroup: query => {
+    return httpUtils.del(address.userModule.delGroup, {
+      data: query
+    })
+  },
+  // 查询用户
+  findUser: query => {
+    return httpUtils.get(address.userModule.findUser, {
+      query: query
+    })
   }
 }
 

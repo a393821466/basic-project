@@ -19,6 +19,12 @@ export default {
     userManagement: `${apis}/user/userManagement`,
     findGroup: `${apis}/user/findGroup`,
     addUserGroup: `${apis}/user/addUserGroup`,
-    updateGroup: `${apis}/user/updateGroup`
+    updateGroup: `${apis}/user/updateGroup`,
+    delGroup: `${apis}/user/delGroupUser`,
+    findUser: `${apis}/user/userSearch`,
+    addUser: `${apis}/user/userManagement`,
+    userUpdate: `${apis}/user/userUpdate`,
+    userStatus: `${apis}/user/userStatus`,
+    userDelete: `${apis}/user/userDelete`
   }
 }
