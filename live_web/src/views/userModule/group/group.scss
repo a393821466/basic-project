@@ -8,6 +8,10 @@
 .iconWidth{
   width:130px
 }
+.el-table th{
+  background: #f8f8f8;
+}
+
 @media (max-width: 767px) {
   .el-button+.el-button {
     margin: 5px 0px;

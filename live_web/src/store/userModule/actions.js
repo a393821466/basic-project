@@ -167,21 +167,50 @@ export default {
   // 确认修改用户组
   changeGroupConfirm({ commit }, query) {
     return new Promise((resolve, reject) => {
-      userModules.updateGroup(query).then(rs => {
-        resolve(rs)
-      }).catch(err => {
-        reject(err)
-      })
+      userModules
+        .updateGroup(query)
+        .then(rs => {
+          resolve(rs)
+        })
+        .catch(err => {
+          reject(err)
+        })
     })
   },
   // 删除用户组
   delGroupUser({ commit }, query) {
     return new Promise((resolve, reject) => {
-      userModules.delGroup(query).then(rs => {
-        resolve(rs)
-      }).catch(err => {
-        reject(err)
-      })
+      userModules
+        .delGroup(query)
+        .then(rs => {
+          resolve(rs)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
+  // 查找用户组
+  findUser({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules
+        .findUser(query)
+        .then(rs => {
+          const da = rs.value
+          let arrayOfSquares = ''
+          if (da.data.length > 0) {
+            arrayOfSquares = da.data.map(v => {
+              v.onCheck = false
+              v.edit = false
+              return da
+            })
+          }
+          commit(types.FINDUSER, da.data.length > 0 ? arrayOfSquares : da)
+          resolve(rs)
+        })
+        .catch(err => {
+          reject(err)
+        })
     })
   }
 }

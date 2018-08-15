@@ -32,7 +32,7 @@
             <img :src="scope.row.icon" v-else class="groupIcon"/>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width='200px'>
           <template slot-scope="scope">
             <el-button type="warning" title='添加权限' @click="handleCompetence(scope.row)" icon="el-icon-setting" v-if="scope.row.power==0" circle></el-button>
             <el-button type="primary" title='编辑组' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>

@@ -5,7 +5,8 @@ import {
   GROUPMERCHANT,
   FINDMERCHANTGROUP,
   CHANGEBOXSHOW,
-  CHANGBOXHIDE
+  CHANGBOXHIDE,
+  FINDUSER
 } from './types'
 
 export const state = {
@@ -13,7 +14,8 @@ export const state = {
   openMerchantBox: false,
   groupMerchant: [],
   groupArray: [],
-  singleData: {}
+  singleData: {},
+  userData: []
 }
 
 export const mutations = {
@@ -38,6 +40,9 @@ export const mutations = {
   },
   [CHANGBOXHIDE](state) {
     state.singleData.edit = false
+  },
+  [FINDUSER](state, res) {
+    state.userData = !res.data ? res[0] : res.data
   }
 }
 
@@ -46,5 +51,6 @@ export const getters = {
   openMerchantBox: state => state.openMerchantBox,
   groupMerchant: state => state.groupMerchant,
   groupArray: state => state.groupArray,
-  singData: state => state.singleData
+  singData: state => state.singleData,
+  userData: state => state.userData
 }

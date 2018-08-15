@@ -1,3 +1,11 @@
 .addUser-btn{
   float:right;
 }
+.el-table{
+  margin-top:20px;
+}
+@media (max-width: 767px) {
+  .search-btn{
+    margin-bottom:20px;
+  }
+}

@@ -11,6 +11,10 @@
             <el-input v-model="nickname" class="filter-item" placeholder="昵称">
             </el-input>
           </el-form-item>
+          <el-form-item label="角色组">
+            <el-input v-model="groupname" class="filter-item" placeholder="角色名">
+            </el-input>
+          </el-form-item>
           <el-form-item label="房间号">
             <el-input v-model="room" class="filter-item" placeholder="房间号">
             </el-input>
@@ -33,17 +37,50 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="开户人">
-            <el-input v-model="superior_user" class="filter-item" placeholder="开户人昵称">
-            </el-input>
-          </el-form-item>
-          <el-button class="search-btn" @click="userSearch" style="margin-left:10px;" type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button class="search-btn" @click="userSearch" type="primary" style="margin-bottom:10px;" icon="el-icon-search">搜索</el-button>
         </div>
         <div class="btn">
           <el-button class="delUser-btn" type="danger" icon="el-icon-delete" @click="addUser">删除所选</el-button>
           <el-button class="addUser-btn" type="primary" icon="el-icon-plus" @click="addUser">添加用户</el-button>
         </div>
       </el-form>
+    </div>
+    <div class="merchant-tables">
+      <el-table :data="userData.data" style="width: 100%" v-loading="listLoading" @selection-change="handleSelectionChange" ref="multipleTable">
+        <el-table-column prop="onCheck" :selectable="checkSelectable" :disabled='username=="admin"?isAble:""' type="selection" width="55">
+        </el-table-column>
+        <el-table-column prop="id" label="序号" width='80' sortable>
+        </el-table-column>
+        <el-table-column prop="username" label="用户名">
+        </el-table-column>
+        <el-table-column prop="nicename" label="用户名称">
+        </el-table-column>
+        <el-table-column prop="merchant" label="所在品牌">
+        </el-table-column>
+        <el-table-column prop="groupName" label="角色组">
+        </el-table-column>
+        <el-table-column prop="status" label="审核状态" :formatter="formStatus">
+        </el-table-column>
+        <el-table-column prop="roomId" label="房间号" :formatter="RoomNumber">
+        </el-table-column>
+        <el-table-column prop="f_status" label="冻结状态" :formatter="formfstatus">
+        </el-table-column>
+        <el-table-column prop="a_status" label="禁言状态" :formatter="formastatus">
+        </el-table-column>
+        <el-table-column prop="create_time" label="创建时间" :formatter="formDates">
+        </el-table-column>
+        <el-table-column label="操作" width='200px'>
+          <template slot-scope="scope">
+            <el-button type="primary" title='修改信息' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>
+            <el-button type="warning" v-if="scope.row.username!=='admin'" title='用户状态设置' @click="handleEdit(scope.row)" icon="el-icon-time" circle></el-button>
+            <el-button title='删除用户' v-if="scope.row.username!=='admin'" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="pages">
+        <el-pagination background layout="prev, pager, next" :page-size='userData.pageSize' :total="userData.totelPage" @current-change="handleCurrentChange">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>

@@ -32,7 +32,7 @@
         </el-table-column>
         <el-table-column prop="create_time" label="创建日期" width="180" :formatter="formDates">
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width='150px'>
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" icon="el-icon-close" type="info" size="small" v-if="scope.row.edit" :loading="scope.row.loading" title='关闭' circle></el-button>
             <el-button @click="handleClick(scope.row)" icon="el-icon-check" type="primary" size="small" v-else :loading="scope.row.loading" title='开启' circle></el-button>
