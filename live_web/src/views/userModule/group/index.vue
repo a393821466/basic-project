@@ -24,7 +24,7 @@
         </el-table-column>
         <el-table-column prop="introduce" label="用户组介绍">
         </el-table-column>
-        <el-table-column prop="merchant" label="品牌别名">
+        <el-table-column prop="group_code" label="品牌别名">
         </el-table-column>
         <el-table-column prop="icon" label="图标"  class="iconWidth">
           <template slot-scope="scope">
@@ -42,7 +42,7 @@
         </el-table-column>
       </el-table>
       <div class="pages">
-        <el-pagination background layout="prev, pager, next" :page-size='groupArray.pageSize' :total="groupArray.totelPage" @current-change="handleCurrentChange">
+        <el-pagination background layout="prev, pager, next" :page-size='groupArray.pageSize' :total="groupArray.totelPage" :current-page="groupArray.page" @current-change="handleCurrentChange">
         </el-pagination>
       </div>
     </div>

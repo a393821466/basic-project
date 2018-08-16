@@ -55,7 +55,7 @@
         </el-table-column>
         <el-table-column prop="nicename" label="用户名称">
         </el-table-column>
-        <el-table-column prop="merchant" label="所在品牌">
+        <el-table-column prop="user_code" label="所在品牌">
         </el-table-column>
         <el-table-column prop="groupName" label="角色组">
         </el-table-column>
@@ -71,17 +71,18 @@
         </el-table-column>
         <el-table-column label="操作" width='200px'>
           <template slot-scope="scope">
-            <el-button type="primary" title='修改信息' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>
+            <el-button type="primary" title='查看更多' @click="handleLookMsg(scope.row)" icon="el-icon-view" circle></el-button>
             <el-button type="warning" v-if="scope.row.username!=='admin'" title='用户状态设置' @click="handleEdit(scope.row)" icon="el-icon-time" circle></el-button>
             <el-button title='删除用户' v-if="scope.row.username!=='admin'" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
           </template>
         </el-table-column>
       </el-table>
       <div class="pages">
-        <el-pagination background layout="prev, pager, next" :page-size='userData.pageSize' :total="userData.totelPage" @current-change="handleCurrentChange">
+        <el-pagination background layout="prev, pager, next" :page-size='userData.pageSize' :total="userData.totelPage" :current-page="userData.page" @current-change="handleCurrentChange">
         </el-pagination>
       </div>
     </div>
+    <add-user-box :openUserBox="openMerchantBox"></add-user-box>
   </div>
 </template>
 <script>

@@ -1,6 +1,10 @@
 import { mapGetters } from 'vuex'
+import addUserBox from './addUser'
 import { time } from '@/utils/common'
 export default {
+  components: {
+    addUserBox
+  },
   data() {
     return {
       listLoading: false,
@@ -66,7 +70,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userData'])
+    ...mapGetters(['userData', 'openMerchantBox'])
   },
   mounted() {
     this.userSearch()
@@ -80,7 +84,8 @@ export default {
         groupName: this.groupname,
         status: this.value === 2 ? '' : this.value,
         f_status: this.value1 === 2 ? '' : this.value1,
-        a_status: this.value2 === 2 ? '' : this.value2
+        a_status: this.value2 === 2 ? '' : this.value2,
+        page: 1
       }
       this.listLoading = true
       this.$store
@@ -94,7 +99,7 @@ export default {
         })
     },
     addUser(row) {
-      console.log(row)
+      this.$store.dispatch('dialogFormVisible')
     },
     handleEdit(row) {
       console.log(row)
@@ -104,12 +109,16 @@ export default {
     },
     handleCurrentChange(page) {
       this.listLoading = true
-      this.$store.dispatch('findUser', { page: page }).then(() => {
-        this.listLoading = false
-      }).catch((err) => {
-        this.listLoading = false
-        return err
-      })
+      this.pages = page
+      this.$store
+        .dispatch('findUser', { page: this.pages })
+        .then(() => {
+          this.listLoading = false
+        })
+        .catch(err => {
+          this.listLoading = false
+          return err
+        })
     },
     handleSelectionChange(row) {
       const arr = []

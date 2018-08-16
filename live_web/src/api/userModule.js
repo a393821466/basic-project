@@ -56,6 +56,12 @@ const userModule = {
     return httpUtils.get(address.userModule.findUser, {
       query: query
     })
+  },
+  // 查询品牌及对应的用户组
+  findMerchantGroupName: query => {
+    return httpUtils.get(address.userModule.findMerchantAndGroup, {
+      query: query
+    })
   }
 }
 

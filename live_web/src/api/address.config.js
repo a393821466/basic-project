@@ -25,6 +25,7 @@ export default {
     addUser: `${apis}/user/userManagement`,
     userUpdate: `${apis}/user/userUpdate`,
     userStatus: `${apis}/user/userStatus`,
-    userDelete: `${apis}/user/userDelete`
+    userDelete: `${apis}/user/userDelete`,
+    findMerchantAndGroup: `${apis}/user/findMerchantAndGroup`
   }
 }

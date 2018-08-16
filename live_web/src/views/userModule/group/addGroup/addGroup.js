@@ -52,10 +52,6 @@ export default {
         return
       }
       this.$refs.ruleForm.validate(valid => {
-        const da = {
-          code: this.ruleForm.value,
-          groupName: this.ruleForm.name
-        }
         if (valid) {
           this.$store
             .dispatch('addGroup', this.ruleForm)
@@ -67,7 +63,7 @@ export default {
                 type: 'success'
               })
               this.$store.dispatch('dialogOff')
-              this.$store.dispatch('findMerchantGroup', da)
+              this.$store.dispatch('findMerchantGroup')
               this.clearInput()
             })
             .catch(err => {
