@@ -7,7 +7,7 @@
         </el-form-item>
         <el-form-item label="品牌别名" :label-width="formLabelWidth" prop="value">
           <el-select class="statusInput" v-model="ruleForm.value" placeholder="选择品牌别名">
-            <el-option v-for="(item,index) in groupMerchant" :key="index" :value="item.code" :label="item.merchant" v-if="item.code!=='all'">
+            <el-option v-for="(item,index) in getMerchant.data" :key="index" :value="item.code" :label="item.merchant" v-if="item.code!=='all'">
             </el-option>
           </el-select>
         </el-form-item>

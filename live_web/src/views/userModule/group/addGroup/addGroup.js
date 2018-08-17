@@ -34,7 +34,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['groupMerchant'])
+    ...mapGetters(['getMerchant'])
   },
   methods: {
     clearInput() {

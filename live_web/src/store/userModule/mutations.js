@@ -1,8 +1,8 @@
+// import { set, get } from '@/utils/storage'
 import {
   FINDMERCHANT,
   ADDMERCHANTBOX,
   MERCHANTBOXOFF,
-  GROUPMERCHANT,
   FINDMERCHANTGROUP,
   CHANGEBOXSHOW,
   CHANGBOXHIDE,
@@ -10,17 +10,16 @@ import {
 } from './types'
 
 export const state = {
-  merchantData: [],
+  merchantData: '',
   openMerchantBox: false,
-  groupMerchant: [],
-  groupArray: [],
+  groupArray: '',
   singleData: {},
   userData: []
 }
 
 export const mutations = {
   [FINDMERCHANT](state, res) {
-    state.merchantData = !res.data ? res[0] : res.data
+    state.merchantData = res
   },
   [ADDMERCHANTBOX](state) {
     state.openMerchantBox = true
@@ -28,11 +27,8 @@ export const mutations = {
   [MERCHANTBOXOFF](state) {
     state.openMerchantBox = false
   },
-  [GROUPMERCHANT](state, res) {
-    state.groupMerchant = res.data
-  },
   [FINDMERCHANTGROUP](state, res) {
-    state.groupArray = !res.data ? res[0] : res.data
+    state.groupArray = res
   },
   [CHANGEBOXSHOW](state, res) {
     res.edit = true
@@ -42,14 +38,13 @@ export const mutations = {
     state.singleData.edit = false
   },
   [FINDUSER](state, res) {
-    state.userData = !res.data ? res[0] : res.data
+    state.userData = res
   }
 }
 
 export const getters = {
   getMerchant: state => state.merchantData,
   openMerchantBox: state => state.openMerchantBox,
-  groupMerchant: state => state.groupMerchant,
   groupArray: state => state.groupArray,
   singData: state => state.singleData,
   userData: state => state.userData

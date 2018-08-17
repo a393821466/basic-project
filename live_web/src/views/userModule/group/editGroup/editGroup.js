@@ -22,7 +22,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['groupMerchant'])
+    ...mapGetters(['getMerchant'])
   },
   mounted() {},
   methods: {

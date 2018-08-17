@@ -1,6 +1,7 @@
 import { mapGetters } from 'vuex'
 import MerchantModel from './addMerchantBox/index'
 import { time } from '@/utils/common'
+import { get } from '@/utils/storage'
 export default {
   components: {
     MerchantModel
@@ -31,8 +32,9 @@ export default {
     ...mapGetters(['getMerchant', 'openMerchantBox'])
   },
   mounted() {
-    this.listLoading = true
-    this.gettMerchant()
+    if (!this.getMerchant || !get('merchant')) {
+      this.gettMerchant()
+    }
   },
   methods: {
     filterId(value, row) {
@@ -55,6 +57,7 @@ export default {
       return time('0', JSON.parse(date))
     },
     gettMerchant(params) {
+      this.listLoading = true
       this.$store
         .dispatch('getMerchant', params)
         .then(rs => {

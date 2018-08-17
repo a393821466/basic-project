@@ -57,10 +57,16 @@ const userModule = {
       query: query
     })
   },
-  // 查询品牌及对应的用户组
-  findMerchantGroupName: query => {
-    return httpUtils.get(address.userModule.findMerchantAndGroup, {
-      query: query
+  // 添加用户
+  addUsers: params => {
+    return httpUtils.post(address.userModule.addUser, {
+      data: params
+    })
+  },
+  // 删除用户
+  delUsers: params => {
+    return httpUtils.post(address.userModule.delUser, {
+      data: params
     })
   }
 }

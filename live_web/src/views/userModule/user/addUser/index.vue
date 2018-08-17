@@ -6,23 +6,29 @@
           <el-input v-model="ruleForm.username" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" :label-width="formLabelWidth" prop="password">
-          <el-input v-model="ruleForm.password" type='password' auto-complete="off"></el-input>
+          <el-input v-model="ruleForm.password" type='password' placeholder="不填写默认123456" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="昵称" :label-width="formLabelWidth" prop="nickname">
-          <el-input v-model="ruleForm.nickname" auto-complete="off"></el-input>
+        <el-form-item label="昵称" :label-width="formLabelWidth" prop="nicename">
+          <el-input v-model="ruleForm.nicename" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="品牌别名" :label-width="formLabelWidth" prop="value1">
-          <el-select class="statusInput" v-model="ruleForm.value1" placeholder="选择品牌别名">
-            <el-option v-for="(item,index) in getMerchant" :key="index" :value="item.code" :label="item.merchant" v-if="item.code!=='all'">
+        <el-form-item label="品牌别名" :label-width="formLabelWidth" prop="code">
+          <el-select class="statusInput" @change="checkMerchant"  v-model="ruleForm.code" placeholder="选择品牌别名">
+            <el-option v-for="(item,index) in getMerchant.data" :key="index" :value="item.code" :label="item.merchant" v-if="item.code!=='all'">
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="房间名" :label-width="formLabelWidth" prop="room">
-          <el-input v-model="ruleForm.room" auto-complete="off"></el-input>
+        <el-form-item label="房间名" :label-width="formLabelWidth" prop="roomId">
+          <el-input v-model="ruleForm.roomId" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="角色名称" :label-width="formLabelWidth" prop="value2">
-          <el-select class="statusInput" v-model="ruleForm.value2" placeholder="选择角色">
-            <el-option v-for="(item,index) in groupArray" :key="index" :value="item.id" :label="item.name">
+        <el-form-item label="角色名称" :label-width="formLabelWidth" prop="groupId">
+          <el-select class="statusInput" v-model="ruleForm.groupId" placeholder="选择角色">
+            <el-option v-for="(item,index) in gArray" :key="index" :value="item.id" :label="item.name">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="审核状态" :label-width="formLabelWidth" prop="status">
+          <el-select class="statusInput" v-model="ruleForm.status" placeholder="选择角色">
+            <el-option v-for="(item,index) in status" :key="index" :value="item.value" :label="item.label">
             </el-option>
           </el-select>
         </el-form-item>

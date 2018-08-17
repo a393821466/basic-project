@@ -1,4 +1,5 @@
 import { mapGetters } from 'vuex'
+import { get } from '@/utils/storage'
 import addGroup from './addGroup/'
 import editGroup from './editGroup/'
 export default {
@@ -17,16 +18,19 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'groupMerchant',
+      'getMerchant',
       'groupArray',
       'openMerchantBox',
       'singData'
     ])
   },
   mounted() {
-    this.getMerchant()
-    this.groupSearch()
-    // console.log(this.groupMerchant)
+    if (!this.getMerchant || !get('merchant')) {
+      this.getMerchants()
+    }
+    if (!this.groupArray || !get('group')) {
+      this.groupSearch()
+    }
   },
   methods: {
     groupSearch() {
@@ -44,8 +48,8 @@ export default {
           this.listLoading = false
         })
     },
-    getMerchant() {
-      this.$store.dispatch('groupGetMerchant', { pagesize: 100 })
+    getMerchants() {
+      this.$store.dispatch('getMerchant')
     },
     addGroup(val) {
       this.$store.dispatch('dialogFormVisible')
@@ -76,6 +80,10 @@ export default {
           this.$store
             .dispatch('delGroupUser', { id: row.id })
             .then(result => {
+              this.$message({
+                message: '删除成功',
+                type: 'success'
+              })
               this.listLoading = false
               this.$store.dispatch('findMerchantGroup')
             })

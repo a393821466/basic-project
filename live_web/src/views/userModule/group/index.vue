@@ -8,7 +8,9 @@
         </el-form-item>
         <el-form-item label="品牌名" class="statusInputs">
           <el-select class="statusInput" v-model="value" placeholder="全部">
-            <el-option v-for="(item,index) in groupMerchant" :key="index" :value="item.code" :label="item.merchant">
+            <el-option value="all" label="全部">
+            </el-option>
+            <el-option v-for="(item,index) in getMerchant.data" :key="index" :value="item.code" :label="item.merchant">
             </el-option>
           </el-select>
         </el-form-item>

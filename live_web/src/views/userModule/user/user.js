@@ -8,6 +8,7 @@ export default {
   data() {
     return {
       listLoading: false,
+      loading: false,
       username: '',
       nickname: '',
       room: '',
@@ -70,7 +71,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userData', 'openMerchantBox'])
+    ...mapGetters(['userData', 'openMerchantBox', 'getMerchant', 'groupArray'])
   },
   mounted() {
     this.userSearch()
@@ -98,14 +99,63 @@ export default {
           return err
         })
     },
-    addUser(row) {
+    addUser() {
       this.$store.dispatch('dialogFormVisible')
+      if (!this.getMerchant) {
+        this.$store.dispatch('getMerchant')
+      }
+      if (!this.groupArray) {
+        this.$store.dispatch('findMerchantGroup')
+      }
     },
-    handleEdit(row) {
+    handleLookMsg(row) {
+      console.log(row)
+    },
+    handleStatus(row) {
       console.log(row)
     },
     handleDel(row) {
-      console.log(row)
+      const da = []
+      da.push(row.id)
+      this.delData = da
+      this.delMethods({ id: this.delData })
+    },
+    delSelectUser() {
+      if (this.delData.length === 0) {
+        this.$message({
+          message: `没有勾选的用户`,
+          type: 'error'
+        })
+      } else {
+        this.delMethods({ id: this.delData.toString() })
+      }
+    },
+    delMethods(da) {
+      this.$confirm('是否删除该用户', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          this.listLoading = true
+          this.$store
+            .dispatch('delUser', da)
+            .then(rs => {
+              this.listLoading = false
+              this.$store.dispatch('findUser')
+              this.$message({
+                message: `删除成功`,
+                type: 'success'
+              })
+            })
+            .catch(err => {
+              this.listLoading = false
+              return err
+            })
+        })
+        .catch(() => {
+          this.listLoading = false
+        })
     },
     handleCurrentChange(page) {
       this.listLoading = true
@@ -123,7 +173,7 @@ export default {
     handleSelectionChange(row) {
       const arr = []
       for (let i = 0; i < row.length; i++) {
-        arr.push(row[i].id.toString())
+        arr.push(row[i].id)
       }
       this.delData = arr
     },
@@ -161,7 +211,7 @@ export default {
       if (!row.roomId) {
         return '未分配'
       }
-      return row.roomId
+      return row.roomId + '号'
     },
     formDates(row, column) {
       const date = row[column.property]

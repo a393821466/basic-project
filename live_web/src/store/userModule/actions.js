@@ -1,5 +1,6 @@
 import * as types from './types'
 import userModules from '../../api/userModule'
+
 export default {
   // 获取品牌
   getMerchant: ({ commit }, query) => {
@@ -8,9 +9,8 @@ export default {
         .findMerchant(query)
         .then(res => {
           const da = res.value
-          let arrayOfSquares = ''
           if (da.data.length > 0) {
-            arrayOfSquares = da.data.map(v => {
+            da.data.map(v => {
               v.loading = false
               if (v.status === 1) {
                 v.edit = true
@@ -20,7 +20,7 @@ export default {
               return da
             })
           }
-          commit(types.FINDMERCHANT, da.data.length > 0 ? arrayOfSquares : da)
+          commit(types.FINDMERCHANT, da.data.length > 0 ? da : [])
           resolve(da)
         })
         .catch(err => {
@@ -85,24 +85,6 @@ export default {
         })
     })
   },
-  // 用户组获取全部品牌
-  groupGetMerchant({ commit }, query) {
-    return new Promise((resolve, reject) => {
-      userModules
-        .findMerchant(query)
-        .then(rs => {
-          const da = rs.value
-          if (da.data.length > 0) {
-            da.data.unshift({ code: 'all', merchant: '全部' })
-          }
-          commit(types.GROUPMERCHANT, da)
-          resolve(rs)
-        })
-        .catch(err => {
-          reject(err)
-        })
-    })
-  },
   // 全部用户组
   findMerchantGroup({ commit }, query) {
     return new Promise((resolve, reject) => {
@@ -110,18 +92,14 @@ export default {
         .findMerchantGroup(query)
         .then(rs => {
           const da = rs.value
-          let arrayOfSquares = ''
           if (da.data.length > 0) {
-            arrayOfSquares = da.data.map(v => {
+            da.data.map(v => {
               v.loading = false
               v.edit = false
               return da
             })
           }
-          commit(
-            types.FINDMERCHANTGROUP,
-            da.data.length > 0 ? arrayOfSquares : da
-          )
+          commit(types.FINDMERCHANTGROUP, da.data.length > 0 ? da : [])
           resolve(da)
         })
         .catch(err => {
@@ -153,7 +131,7 @@ export default {
     const da = {
       id: query.id,
       name: query.name,
-      code: query.merchant,
+      code: query.group_code,
       edit: query.edit,
       icon: query.icon,
       introduce: query.introduce
@@ -190,27 +168,46 @@ export default {
         })
     })
   },
-  // 查找用户组
+  // 查找用户
   findUser({ commit }, query) {
     return new Promise((resolve, reject) => {
       userModules
         .findUser(query)
         .then(rs => {
           const da = rs.value
-          let arrayOfSquares = ''
           if (da.data.length > 0) {
-            arrayOfSquares = da.data.map(v => {
+            da.data.map(v => {
               v.onCheck = false
               v.edit = false
               return da
             })
           }
-          commit(types.FINDUSER, da.data.length > 0 ? arrayOfSquares : da)
+          commit(types.FINDUSER, da.data.length > 0 ? da : [])
           resolve(rs)
         })
         .catch(err => {
           reject(err)
         })
+    })
+  },
+  // 添加用户
+  addUsers({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules.addUsers(query).then(result => {
+        resolve(result)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  // 删除用户
+  delUser({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules.delUsers(query).then(result => {
+        resolve(result)
+      }).catch(err => {
+        reject(err)
+      })
     })
   }
 }

@@ -40,7 +40,7 @@
           <el-button class="search-btn" @click="userSearch" type="primary" style="margin-bottom:10px;" icon="el-icon-search">搜索</el-button>
         </div>
         <div class="btn">
-          <el-button class="delUser-btn" type="danger" icon="el-icon-delete" @click="addUser">删除所选</el-button>
+          <el-button class="delUser-btn" type="danger" icon="el-icon-delete" @click="delSelectUser">删除所选</el-button>
           <el-button class="addUser-btn" type="primary" icon="el-icon-plus" @click="addUser">添加用户</el-button>
         </div>
       </el-form>
@@ -72,8 +72,8 @@
         <el-table-column label="操作" width='200px'>
           <template slot-scope="scope">
             <el-button type="primary" title='查看更多' @click="handleLookMsg(scope.row)" icon="el-icon-view" circle></el-button>
-            <el-button type="warning" v-if="scope.row.username!=='admin'" title='用户状态设置' @click="handleEdit(scope.row)" icon="el-icon-time" circle></el-button>
-            <el-button title='删除用户' v-if="scope.row.username!=='admin'" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
+            <el-button type="warning" v-if="scope.row.username!=='admin'" title='用户状态设置' @click="handleStatus(scope.row)" icon="el-icon-time" circle></el-button>
+            <el-button title='删除用户' :loading="scope.row.onCheck" v-if="scope.row.username!=='admin'" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
           </template>
         </el-table-column>
       </el-table>

@@ -14,6 +14,7 @@ export default {
   userModule: {
     addMerchant: `${apis}/user/addMerchant`,
     findMerchant: `${apis}/user/findMerchant`,
+    // findAllMerchant: `${apis}/user/findAllMerchant`,
     delMerchant: `${apis}/user/delMerchant`,
     updateMerchant: `${apis}/user/updateMerchant`,
     userManagement: `${apis}/user/userManagement`,
@@ -25,7 +26,6 @@ export default {
     addUser: `${apis}/user/userManagement`,
     userUpdate: `${apis}/user/userUpdate`,
     userStatus: `${apis}/user/userStatus`,
-    userDelete: `${apis}/user/userDelete`,
-    findMerchantAndGroup: `${apis}/user/findMerchantAndGroup`
+    delUser: `${apis}/user/userDelete`
   }
 }
