@@ -1,6 +1,6 @@
 import { mapGetters } from 'vuex'
 import { isvalidUsername, isvalidMerchant } from '@/utils/validate'
-import { get } from '@/utils/storage'
+import { get, getNoParser } from '@/utils/storage'
 export default {
   props: {
     openUserBox: Boolean,
@@ -28,7 +28,7 @@ export default {
       ruleForm: {
         username: '',
         password: '',
-        nicename: '',
+        nickname: '',
         roomId: '',
         code: '',
         status: '',
@@ -76,6 +76,9 @@ export default {
       this.ruleForm.qq = ''
       this.ruleForm.phone = ''
     },
+    getUserInfo(val) {
+      this.$store.dispatch('findUser', { page: val })
+    },
     onConfirm() {
       this.loading = true
       this.$refs.ruleForm.validate(valid => {
@@ -88,7 +91,7 @@ export default {
                 type: 'success'
               })
               this.$store.dispatch('dialogOff')
-              this.$store.dispatch('findUser')
+              this.getUserInfo(getNoParser('pages'))
               this.common()
               this.loading = false
             })

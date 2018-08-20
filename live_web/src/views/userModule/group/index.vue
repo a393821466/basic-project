@@ -44,7 +44,7 @@
         </el-table-column>
       </el-table>
       <div class="pages">
-        <el-pagination background layout="prev, pager, next" :page-size='groupArray.pageSize' :total="groupArray.totelPage" :current-page="groupArray.page" @current-change="handleCurrentChange">
+        <el-pagination background layout="prev, pager, next" :page-size='groupArray.pageSize' :total="groupArray.totelPage" :current-page="rpages" @current-change="handleCurrentChange">
         </el-pagination>
       </div>
     </div>

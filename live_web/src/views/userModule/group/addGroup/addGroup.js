@@ -1,6 +1,7 @@
 import { mapGetters } from 'vuex'
 import { isvalidMerchant } from '@/utils/validate'
 import ImgInputer from 'vue-img-inputer'
+import { getNoParser } from '@/utils/storage'
 export default {
   props: {
     openGroupBox: Boolean,
@@ -42,6 +43,11 @@ export default {
       this.ruleForm.value = ''
       this.ruleForm.introduce = ''
     },
+    getGroup(val) {
+      this.$store.dispatch('findMerchantGroup', {
+        page: val
+      })
+    },
     onConfirm(ruleForm) {
       const file = !document.querySelector('.img-inputer__preview-img')
         ? ''
@@ -51,6 +57,7 @@ export default {
         this.$message({ message: '图标不能大于200k', type: 'error' })
         return
       }
+
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           this.$store
@@ -63,7 +70,7 @@ export default {
                 type: 'success'
               })
               this.$store.dispatch('dialogOff')
-              this.$store.dispatch('findMerchantGroup')
+              this.getGroup(getNoParser('pages'))
               this.clearInput()
             })
             .catch(err => {

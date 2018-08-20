@@ -1,7 +1,7 @@
 import { mapGetters } from 'vuex'
 import MerchantModel from './addMerchantBox/index'
 import { time } from '@/utils/common'
-import { get } from '@/utils/storage'
+import { get, set } from '@/utils/storage'
 export default {
   components: {
     MerchantModel
@@ -11,6 +11,8 @@ export default {
       listLoading: false,
       status: 0,
       merchanrNickname: '',
+      pages: 1,
+      pageSize: 10,
       value: '2',
       options: [
         {
@@ -69,7 +71,9 @@ export default {
     },
     handleCurrentChange(val) {
       this.listLoading = true
-      this.gettMerchant({ page: val })
+      this.pages = val
+      set('pages', this.pages)
+      this.gettMerchant({ page: this.pages })
     },
     handleClick(row) {
       this.$confirm(`您确定执行此操作吗？`, '提示', {
@@ -110,7 +114,8 @@ export default {
           this.$store
             .dispatch('delMerchant', row)
             .then(rs => {
-              this.gettMerchant({ page: 1 })
+              this.gettMerchant()
+              this.handleCurrentChange(1)
               this.listLoading = false
               this.$message({
                 type: 'success',

@@ -1,6 +1,7 @@
 import { mapGetters } from 'vuex'
 import addUserBox from './addUser'
 import { time } from '@/utils/common'
+import { set } from '@/utils/storage'
 export default {
   components: {
     addUserBox
@@ -14,8 +15,10 @@ export default {
       room: '',
       groupname: '',
       delData: [],
+      usergroupName: '',
       isAble: false,
       value: 2,
+      users: JSON.parse(sessionStorage.getItem('userInfo')).value.groupName,
       optionStatus: [
         {
           value: 2,
@@ -99,6 +102,18 @@ export default {
           return err
         })
     },
+    // operatingPermission() {
+    //   const userInfo = sessionStorage.getItem('userInfo')
+    //   const userGroup = JSON.parse(userInfo).value.groupName
+    //   const arrayGroupName = this.userData.data
+    //   const list = []
+    //   for (let i = 0; i < arrayGroupName.length; i++) {
+    //     if (arrayGroupName[i].groupName === userGroup) {
+    //       console.log(arrayGroupName[0].groupName)
+    //     }
+    //   }
+    //   // this.usergroupName = list
+    // },
     addUser() {
       this.$store.dispatch('dialogFormVisible')
       if (!this.getMerchant) {
@@ -142,7 +157,7 @@ export default {
             .dispatch('delUser', da)
             .then(rs => {
               this.listLoading = false
-              this.$store.dispatch('findUser')
+              this.handleCurrentChange(1)
               this.$message({
                 message: `删除成功`,
                 type: 'success'
@@ -160,6 +175,7 @@ export default {
     handleCurrentChange(page) {
       this.listLoading = true
       this.pages = page
+      set('pages', this.pages)
       this.$store
         .dispatch('findUser', { page: this.pages })
         .then(() => {

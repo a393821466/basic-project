@@ -8,8 +8,8 @@
         <el-form-item label="密码" :label-width="formLabelWidth" prop="password">
           <el-input v-model="ruleForm.password" type='password' placeholder="不填写默认123456" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="昵称" :label-width="formLabelWidth" prop="nicename">
-          <el-input v-model="ruleForm.nicename" auto-complete="off"></el-input>
+        <el-form-item label="昵称" :label-width="formLabelWidth" prop="nickname">
+          <el-input v-model="ruleForm.nickname" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="品牌别名" :label-width="formLabelWidth" prop="code">
           <el-select class="statusInput" @change="checkMerchant"  v-model="ruleForm.code" placeholder="选择品牌别名">
@@ -27,7 +27,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="审核状态" :label-width="formLabelWidth" prop="status">
-          <el-select class="statusInput" v-model="ruleForm.status" placeholder="选择角色">
+          <el-select class="statusInput" v-model="ruleForm.status" placeholder="选择状态">
             <el-option v-for="(item,index) in status" :key="index" :value="item.value" :label="item.label">
             </el-option>
           </el-select>

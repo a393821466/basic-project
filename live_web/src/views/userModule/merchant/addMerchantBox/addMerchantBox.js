@@ -1,8 +1,11 @@
 import { isvalidMerchant, isvalidCode } from '@/utils/validate'
+import { getNoParser } from '@/utils/storage'
 export default {
   props: {
-    openMerchantBox: Boolean,
-    required: true
+    openMerchantBox: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     const merchantNames = (rule, value, callback) => {
@@ -64,6 +67,9 @@ export default {
       this.$store.dispatch('dialogOff')
       this.common()
     },
+    getMerchants(val) {
+      this.$store.dispatch('getMerchant', { page: val })
+    },
     onConfirm() {
       this.loading = true
       this.$refs.ruleForm.validate(valid => {
@@ -76,8 +82,8 @@ export default {
                 type: 'success'
               })
               this.common()
+              this.getMerchants(getNoParser('pages'))
               this.$store.dispatch('dialogOff')
-              this.$store.dispatch('getMerchant')
             }
           })
         } else {

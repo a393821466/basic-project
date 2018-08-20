@@ -1,5 +1,5 @@
 import { mapGetters } from 'vuex'
-import { get } from '@/utils/storage'
+import { get, set } from '@/utils/storage'
 import addGroup from './addGroup/'
 import editGroup from './editGroup/'
 export default {
@@ -7,6 +7,7 @@ export default {
     return {
       da: '',
       value: '',
+      rpages: 1,
       merchanrNickname: '',
       listLoading: false
       // formLabelWidth: '100px'
@@ -56,7 +57,9 @@ export default {
     },
     handleCurrentChange(val) {
       this.listLoading = true
-      this.$store.dispatch('findMerchantGroup', { page: val }).then(rs => {
+      this.rpages = val
+      set('pages', this.rpages)
+      this.$store.dispatch('findMerchantGroup', { page: this.rpages }).then(rs => {
         this.listLoading = false
       })
     },
@@ -80,12 +83,13 @@ export default {
           this.$store
             .dispatch('delGroupUser', { id: row.id })
             .then(result => {
+              this.listLoading = false
+              this.handleCurrentChange(1)
               this.$message({
                 message: '删除成功',
                 type: 'success'
               })
-              this.listLoading = false
-              this.$store.dispatch('findMerchantGroup')
+              // this.page = this.groupArray.page
             })
             .catch(err => {
               this.listLoading = false

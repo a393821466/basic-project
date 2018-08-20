@@ -41,7 +41,7 @@
         </el-table-column>
       </el-table>
       <div class="pages">
-        <el-pagination background layout="prev, pager, next" :page-size='getMerchant.pageSize' :total="getMerchant.totelPage" :current-page="getMerchant.page" @current-change="handleCurrentChange">
+        <el-pagination background layout="prev, pager, next" :page-size='getMerchant.pageSize' :total="getMerchant.totelPage" :current-page.sync="pages" @current-change="handleCurrentChange">
         </el-pagination>
       </div>
     </div>
