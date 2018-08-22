@@ -68,6 +68,18 @@ const userModule = {
     return httpUtils.post(address.userModule.delUser, {
       data: params
     })
+  },
+  // 更新用户状态
+  updateStatus: params => {
+    return httpUtils.post(address.userModule.userStatus, {
+      data: params
+    })
+  },
+  // 查看用户附表信息
+  getUserSubset: query => {
+    return httpUtils.get(address.userModule.getUserSubset, {
+      query: query
+    })
   }
 }
 

@@ -26,6 +26,7 @@ export default {
     addUser: `${apis}/user/userManagement`,
     userUpdate: `${apis}/user/userUpdate`,
     userStatus: `${apis}/user/userStatus`,
-    delUser: `${apis}/user/userDelete`
+    delUser: `${apis}/user/userDelete`,
+    getUserSubset: `${apis}/user/getUserSubset`
   }
 }

@@ -71,16 +71,11 @@
         </el-table-column>
         <el-table-column label="操作" width='200px'>
           <template slot-scope="scope">
-            <div class="slotOperating1" v-if="scope.row.username!=='admin'&&scope.row.groupName!==users">
-              <el-button type="primary" title='查看更多' @click="handleLookMsg(scope.row)" icon="el-icon-view" circle></el-button>
-              <el-button type="warning"  title='用户状态设置' @click="handleStatus(scope.row)" icon="el-icon-time" circle></el-button>
-              <el-button title='删除用户' :loading="scope.row.onCheck" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
+            <div class="slotOperating1">
+              <el-button type="primary" :disabled="scope.row.groupName!==users.groupName || scope.row.username===users.username?false:true"  title='查看更多' @click="handleLookMsg(scope.row)" icon="el-icon-view" circle></el-button>
+              <el-button type="warning" v-if="scope.row.username!=='admin'" :disabled="scope.row.groupName!==users.groupName || scope.row.username===users.username?false:true" title='用户状态设置' @click="handleStatus(scope.row)" icon="el-icon-time" circle></el-button>
+              <el-button title='删除用户' v-if="scope.row.username!=='admin'" :disabled="scope.row.groupName!==users.groupName || scope.row.username===users.username?false:true" :loading="scope.row.onCheck" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
             </div>
-            <div class="slotOperating2" v-else>
-              <el-button type="info"  disabled title='查看更多' icon="el-icon-view" circle></el-button>
-              <el-button type="info" disabled  title='用户状态设置' icon="el-icon-time" circle></el-button>
-              <el-button title='删除用户' disabled :loading="scope.row.onCheck" type="info" icon="el-icon-delete"  circle></el-button>
-            </div> 
           </template>
         </el-table-column>
       </el-table>
@@ -90,6 +85,7 @@
       </div>
     </div>
     <add-user-box :openUserBox="openMerchantBox"></add-user-box>
+    <add-status :openStatusBox="singleUser"></add-status>
   </div>
 </template>
 <script>

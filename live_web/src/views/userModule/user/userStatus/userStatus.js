@@ -1,12 +1,23 @@
+import { formartDate, time } from '@/utils/common'
+import { mapGetters } from 'vuex'
+// import moment from 'moment'
 export default {
+  props: {
+    openStatusBox: Object,
+    required: true
+  },
+  computed: {
+    ...mapGetters(['userSubTable'])
+  },
   data() {
     return {
       loading: false,
+      formLabelWidth: '100px',
       ruleForm: {
-        f_status: '',
-        f_time: '',
-        a_status: '',
-        a_time: ''
+        f_status: 1,
+        end_freeze: '',
+        a_status: 1,
+        end_anexcuse: ''
       },
       f_status: [
         {
@@ -40,7 +51,54 @@ export default {
   },
   methods: {
     onConfirm() {
-      console.log(1111)
+      const da = {
+        id: this.$refs.refInput.$attrs.ids,
+        f_status: this.ruleForm.f_status,
+        end_freeze:
+          this.ruleForm.f_status !== 0 ? '' : this.ruleForm.end_freeze,
+        a_status: this.ruleForm.a_status,
+        end_anexcuse:
+          this.ruleForm.a_status !== 0
+            ? ''
+            : formartDate(this.ruleForm.end_anexcuse)
+      }
+      if (da.f_status === 0) {
+        if (!da.end_freeze) {
+          this.$message.error('请选择冻结时间')
+          return
+        }
+      }
+      if (da.a_status === 0) {
+        if (!da.end_anexcuse) {
+          this.$message.error('请选择禁言时间')
+          return
+        }
+      }
+      if (
+        formartDate(da.end_freeze) < formartDate(new Date()) ||
+        formartDate(da.end_anexcuse) < formartDate(new Date())
+      ) {
+        this.$message.error('时间不能小于当天时间')
+        return
+      }
+      this.$store.dispatch('userStatus', da).then(result => {
+        this.$message({
+          message: '操作成功',
+          type: 'success'
+        })
+        this.$store.dispatch('userBoxClose')
+      })
+    },
+    dialogOff() {
+      this.$store.dispatch('userBoxClose')
+    },
+    closeDialog() {
+      this.$store.dispatch('userBoxClose')
+    },
+    fMoment(t) {
+      const s = typeof t === 'string' ? parseInt(t) * 1000 : t
+      // return moment(time).format('YYYY-MM-DD HH:mm')
+      return time('1', s)
     }
   }
 }

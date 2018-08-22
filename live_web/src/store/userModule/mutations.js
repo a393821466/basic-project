@@ -1,4 +1,4 @@
-// import { set, get } from '@/utils/storage'
+// import { formartDate } from '@/utils/common'
 import {
   FINDMERCHANT,
   ADDMERCHANTBOX,
@@ -6,7 +6,10 @@ import {
   FINDMERCHANTGROUP,
   CHANGEBOXSHOW,
   CHANGBOXHIDE,
-  FINDUSER
+  FINDUSER,
+  USERSTTINGBOX,
+  USERSTTINGCLOSE,
+  USERSUBSET
 } from './types'
 
 export const state = {
@@ -14,7 +17,9 @@ export const state = {
   openMerchantBox: false,
   groupArray: '',
   singleData: {},
-  userData: []
+  userData: [],
+  singleUser: {},
+  userSubTable: {}
 }
 
 export const mutations = {
@@ -39,6 +44,16 @@ export const mutations = {
   },
   [FINDUSER](state, res) {
     state.userData = res
+  },
+  [USERSTTINGBOX](state, res) {
+    res.edit = true
+    state.singleUser = res
+  },
+  [USERSTTINGCLOSE](state) {
+    state.singleUser.edit = false
+  },
+  [USERSUBSET](state, rs) {
+    state.userSubTable = rs.value[0]
   }
 }
 
@@ -47,5 +62,7 @@ export const getters = {
   openMerchantBox: state => state.openMerchantBox,
   groupArray: state => state.groupArray,
   singData: state => state.singleData,
-  userData: state => state.userData
+  userData: state => state.userData,
+  singleUser: state => state.singleUser,
+  userSubTable: state => state.userSubTable
 }

@@ -209,5 +209,38 @@ export default {
         reject(err)
       })
     })
+  },
+  // 用户设置功能弹框
+  userBoxOpen({ commit }, query) {
+    const da = {
+      id: query.id,
+      username: query.username,
+      edit: query.edit,
+      f_status: query.f_status,
+      a_status: query.a_status
+    }
+    commit(types.USERSTTINGBOX, da)
+    return new Promise((resolve, reject) => {
+      userModules.getUserSubset({ id: da.id }).then(result => {
+        commit(types.USERSUBSET, result)
+        resolve(result)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  // 用户设置弹框关闭
+  userBoxClose({ commit }) {
+    commit(types.USERSTTINGCLOSE)
+  },
+  // 用户状态管理
+  userStatus({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      userModules.updateStatus(query).then(rs => {
+        resolve(rs)
+      }).catch(err => {
+        reject(err)
+      })
+    })
   }
 }

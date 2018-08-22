@@ -1,10 +1,12 @@
 import { mapGetters } from 'vuex'
 import addUserBox from './addUser'
+import addStatus from './userStatus'
 import { time } from '@/utils/common'
-import { set } from '@/utils/storage'
+import { set, get } from '@/utils/storage'
 export default {
   components: {
-    addUserBox
+    addUserBox,
+    addStatus
   },
   data() {
     return {
@@ -18,7 +20,7 @@ export default {
       usergroupName: '',
       isAble: false,
       value: 2,
-      users: JSON.parse(sessionStorage.getItem('userInfo')).value.groupName,
+      users: get('userInfo').value,
       optionStatus: [
         {
           value: 2,
@@ -74,7 +76,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userData', 'openMerchantBox', 'getMerchant', 'groupArray'])
+    ...mapGetters(['userData', 'openMerchantBox', 'getMerchant', 'groupArray', 'singleUser'])
   },
   mounted() {
     this.userSearch()
@@ -124,10 +126,11 @@ export default {
       }
     },
     handleLookMsg(row) {
+      // this.$store.dispatch('changeGroupBoxShow', row)
       console.log(row)
     },
     handleStatus(row) {
-      console.log(row)
+      this.$store.dispatch('userBoxOpen', row)
     },
     handleDel(row) {
       const da = []

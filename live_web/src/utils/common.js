@@ -15,7 +15,11 @@ const commonMethods = {
         ? year + '-' + month + '-' + date
         : year + '-' + month + '-' + date + ' ' + hour + ':' + mStr + ':' + sStr
     return noHourse
+  },
+  formartDate: time => {
+    let formart = Date.parse(new Date(time))
+    formart = formart / 1000
+    return formart
   }
 }
-
 module.exports = commonMethods
