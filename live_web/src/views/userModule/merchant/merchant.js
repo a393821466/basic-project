@@ -14,6 +14,7 @@ export default {
       pages: 1,
       pageSize: 10,
       value: '2',
+      userInfo: get('userInfo'),
       options: [
         {
           value: '2',

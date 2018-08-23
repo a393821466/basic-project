@@ -50,7 +50,7 @@ export default {
         })
     },
     getMerchants() {
-      this.$store.dispatch('getMerchant')
+      this.$store.dispatch('getMerchant', { pagesize: 9999 })
     },
     addGroup(val) {
       this.$store.dispatch('dialogFormVisible')
@@ -70,7 +70,7 @@ export default {
       this.$store.dispatch('changeGroupBoxShow', row)
     },
     handleLook(row) {
-      console.log(row)
+      this.$router.push({ path: '/userModule/userSetup', query: { groupName: row.name }})
     },
     handleDel(row) {
       this.$confirm(`您确定删除该用户组吗?`, '提示', {

@@ -210,7 +210,7 @@ export default {
       })
     })
   },
-  // 用户设置功能弹框
+  // 用户状态功能弹框
   userBoxOpen({ commit }, query) {
     const da = {
       id: query.id,
@@ -229,9 +229,25 @@ export default {
       })
     })
   },
-  // 用户设置弹框关闭
+  // 用户状态弹框关闭
   userBoxClose({ commit }) {
     commit(types.USERSTTINGCLOSE)
+  },
+  // 用户信息更改弹框及数据
+  changeUserBoxShow({ commit }, query) {
+    commit(types.CHANGEUSEROPEN, query)
+    return new Promise((resolve, reject) => {
+      userModules.getUserSubset({ id: query.id }).then(result => {
+        commit(types.USERSUBSET, result)
+        resolve(result)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  // 用户信息更改弹框关闭
+  closeUserBoxHide({ commit }) {
+    commit(types.CHANGEUSERCLOSE)
   },
   // 用户状态管理
   userStatus({ commit }, query) {

@@ -14,9 +14,9 @@
       </template>
 
       <template v-for="child in item.children" v-if="!child.hidden">
-        <sidebar-item :is-nest="true" class="nest-menu" v-if="child.children&&child.children.length>0" :item="child" :key="child.path" :base-path="resolvePath(child.path)"></sidebar-item>
+        <!-- <sidebar-item :is-nest="true" class="nest-menu" v-if="child.children&&child.children.length>0" :item="child" :key="child.path" :base-path="resolvePath(child.path)"></sidebar-item> -->
 
-        <router-link v-else :to="resolvePath(child.path)" :key="child.name">
+        <router-link :to="resolvePath(child.path)" :key="child.name" v-if="userInfo.merchant=='system'||child.row!==1?true:false">
           <el-menu-item :index="resolvePath(child.path)">
             <svg-icon v-if="child.meta&&child.meta.icon" :icon-class="child.meta.icon"></svg-icon>
             <span v-if="child.meta&&child.meta.title" slot="title">{{child.meta.title}}</span>
@@ -30,7 +30,7 @@
 
 <script>
 import path from 'path'
-
+import { get } from '@/utils/storage'
 export default {
   name: 'SidebarItem',
   props: {
@@ -50,11 +50,13 @@ export default {
   },
   data() {
     return {
-      onlyOneChild: null
+      onlyOneChild: null,
+      userInfo: get('userInfo')
     }
   },
   mounted() {
     // this.hasOneShowingChild(this.item.children)
+    // console.log(this.item)
   },
   methods: {
     hasOneShowingChild(children) {

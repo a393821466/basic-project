@@ -1,6 +1,7 @@
-import { formartDate, time } from '@/utils/common'
+import { formartDate } from '@/utils/common'
 import { mapGetters } from 'vuex'
-// import moment from 'moment'
+import { getNoParser } from '@/utils/storage'
+import moment from 'moment'
 export default {
   props: {
     openStatusBox: Object,
@@ -13,6 +14,8 @@ export default {
     return {
       loading: false,
       formLabelWidth: '100px',
+      freeze: true,
+      anexcuse: true,
       ruleForm: {
         f_status: 1,
         end_freeze: '',
@@ -60,7 +63,7 @@ export default {
         end_anexcuse:
           this.ruleForm.a_status !== 0
             ? ''
-            : formartDate(this.ruleForm.end_anexcuse)
+            : this.ruleForm.end_anexcuse
       }
       if (da.f_status === 0) {
         if (!da.end_freeze) {
@@ -74,11 +77,12 @@ export default {
           return
         }
       }
-      if (
-        formartDate(da.end_freeze) < formartDate(new Date()) ||
-        formartDate(da.end_anexcuse) < formartDate(new Date())
-      ) {
-        this.$message.error('时间不能小于当天时间')
+      if (formartDate(da.end_freeze) < formartDate(new Date())) {
+        this.$message.error('禁言时间不能小于当天时间')
+        return
+      }
+      if (formartDate(da.end_anexcuse) < formartDate(new Date())) {
+        this.$message.error('禁言时间不能小于当天时间')
         return
       }
       this.$store.dispatch('userStatus', da).then(result => {
@@ -87,18 +91,32 @@ export default {
           type: 'success'
         })
         this.$store.dispatch('userBoxClose')
+        this.getUserInfo(getNoParser('pages'))
       })
     },
+    getUserInfo(val) {
+      this.$store.dispatch('findUser', { page: val })
+    },
     dialogOff() {
+      this.freeze = true
+      this.anexcuse = true
       this.$store.dispatch('userBoxClose')
     },
     closeDialog() {
+      this.freeze = true
+      this.anexcuse = true
       this.$store.dispatch('userBoxClose')
+    },
+    change_freeze() {
+      this.freeze = false
+    },
+    change_anexcuse() {
+      this.anexcuse = false
     },
     fMoment(t) {
       const s = typeof t === 'string' ? parseInt(t) * 1000 : t
-      // return moment(time).format('YYYY-MM-DD HH:mm')
-      return time('1', s)
+      return moment(s).format('YYYY-MM-DD HH:mm')
+      // return time('1', s)
     }
   }
 }

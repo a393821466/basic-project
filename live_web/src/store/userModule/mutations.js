@@ -9,7 +9,9 @@ import {
   FINDUSER,
   USERSTTINGBOX,
   USERSTTINGCLOSE,
-  USERSUBSET
+  USERSUBSET,
+  CHANGEUSEROPEN,
+  CHANGEUSERCLOSE
 } from './types'
 
 export const state = {
@@ -19,7 +21,8 @@ export const state = {
   singleData: {},
   userData: [],
   singleUser: {},
-  userSubTable: {}
+  userSubTable: {},
+  userChangeInfo: {}
 }
 
 export const mutations = {
@@ -54,6 +57,13 @@ export const mutations = {
   },
   [USERSUBSET](state, rs) {
     state.userSubTable = rs.value[0]
+  },
+  [CHANGEUSEROPEN](state, rs) {
+    rs.edit = true
+    state.userChangeInfo = rs
+  },
+  [CHANGEUSERCLOSE](state) {
+    state.userChangeInfo.edit = false
   }
 }
 

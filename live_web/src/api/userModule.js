@@ -75,6 +75,11 @@ const userModule = {
       data: params
     })
   },
+  updateUser: params => {
+    return httpUtils.post(address.userModule.userUpdate, {
+      data: params
+    })
+  },
   // 查看用户附表信息
   getUserSubset: query => {
     return httpUtils.get(address.userModule.getUserSubset, {

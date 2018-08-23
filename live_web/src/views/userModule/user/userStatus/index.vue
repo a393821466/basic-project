@@ -12,9 +12,9 @@
           </el-select>
         </el-form-item>
         <el-form-item label="冻结时间" :label-width="formLabelWidth" prop="f_time" v-if="ruleForm.f_status==0">
-          <div class="freeze_time1" v-if="userSubTable.end_freeze_time!=='0'">
+          <div class="freeze_time1" v-if="userSubTable.end_freeze_time!=='0' &&freeze">
             <el-input style="width:60%" disabled :value="fMoment(userSubTable.end_freeze_time)"></el-input>
-            <span>更改</span>
+            <span @click="change_freeze" style="cursor:pointer;color:#409EFF;border-bottom:1px solid #409EFF;">更改</span>
           </div>
           <div class="freeze_time2" v-else>
             <el-date-picker v-model="ruleForm.end_freeze" type="datetime" placeholder="选择结束时间">
@@ -28,9 +28,9 @@
           </el-select>
         </el-form-item>
         <el-form-item label="禁言时间" :label-width="formLabelWidth" prop="a_time" v-if="ruleForm.a_status==0">
-          <div class="end_anexcuse1" v-if="userSubTable.end_anexcuse_time!=='0'">
-            <el-input class="end_anexcuse_times" disabled :value="userSubTable.end_anexcuse_time"></el-input>
-            <span>更改</span>
+          <div class="end_anexcuse1" v-if="userSubTable.end_anexcuse_time!=='0'&&anexcuse">
+            <el-input style="width:60%" class="end_anexcuse_times" disabled :value="fMoment(userSubTable.end_anexcuse_time)"></el-input>
+            <span style="cursor:pointer;color:#409EFF;border-bottom:1px solid #409EFF;" @click="change_anexcuse">更改</span>
           </div>
           <div class="end_anexcuse2" v-else>
             <el-date-picker v-model="ruleForm.end_anexcuse" type="datetime" placeholder="选择结束时间">

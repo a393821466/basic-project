@@ -86,6 +86,7 @@
     </div>
     <add-user-box :openUserBox="openMerchantBox"></add-user-box>
     <add-status :openStatusBox="singleUser"></add-status>
+    <change-user :changeUser="userChange"></change-user>
   </div>
 </template>
 <script>

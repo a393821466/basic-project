@@ -2,8 +2,8 @@
   <div class="app-group">
     <div class="filter-container">
       <el-form ref="form" :inline="true">
-        <el-form-item label="用户组名称">
-          <el-input v-model="merchanrNickname" style="width: 200px;" class="filter-item" placeholder="用户组名称">
+        <el-form-item label="角色名称">
+          <el-input v-model="merchanrNickname" style="width: 200px;" class="filter-item" placeholder="角色名称">
           </el-input>
         </el-form-item>
         <el-form-item label="品牌名" class="statusInputs">
@@ -22,9 +22,9 @@
       <el-table :data="groupArray.data" style="width: 100%" v-loading="listLoading">
         <el-table-column prop="id" label="序号" width='80' sortable>
         </el-table-column>
-        <el-table-column prop="name" label="用户组名称">
+        <el-table-column prop="name" label="角色名称">
         </el-table-column>
-        <el-table-column prop="introduce" label="用户组介绍">
+        <el-table-column prop="introduce" label="角色介绍">
         </el-table-column>
         <el-table-column prop="group_code" label="品牌别名">
         </el-table-column>
@@ -37,8 +37,8 @@
         <el-table-column label="操作" width='200px'>
           <template slot-scope="scope">
             <el-button type="warning" title='添加权限' @click="handleCompetence(scope.row)" icon="el-icon-setting" v-if="scope.row.power==0" circle></el-button>
-            <el-button type="primary" title='编辑组' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>
-            <el-button title='查看组用户' icon="el-icon-search" @click="handleLook(scope.row)" circle></el-button>
+            <el-button type="primary" title='编辑角色' @click="handleEdit(scope.row)" icon="el-icon-edit" circle></el-button>
+            <el-button title='查看角色用户' icon="el-icon-search" @click="handleLook(scope.row)" circle></el-button>
             <el-button title='删除组' v-if="scope.row.power==0" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" circle></el-button>
           </template>
         </el-table-column>

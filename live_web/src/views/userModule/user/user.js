@@ -1,17 +1,20 @@
 import { mapGetters } from 'vuex'
 import addUserBox from './addUser'
 import addStatus from './userStatus'
+import changeUser from './changeUser'
 import { time } from '@/utils/common'
 import { set, get } from '@/utils/storage'
 export default {
   components: {
     addUserBox,
-    addStatus
+    addStatus,
+    changeUser
   },
   data() {
     return {
       listLoading: false,
       loading: false,
+      urlParams: '',
       username: '',
       nickname: '',
       room: '',
@@ -19,6 +22,7 @@ export default {
       delData: [],
       usergroupName: '',
       isAble: false,
+      userChange: '',
       value: 2,
       users: get('userInfo').value,
       optionStatus: [
@@ -76,18 +80,25 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userData', 'openMerchantBox', 'getMerchant', 'groupArray', 'singleUser'])
+    ...mapGetters([
+      'userData',
+      'openMerchantBox',
+      'getMerchant',
+      'groupArray',
+      'singleUser'
+    ])
   },
   mounted() {
+    this.params = this.$route.query.groupName
     this.userSearch()
   },
   methods: {
-    userSearch() {
+    userSearch(params) {
       const data = {
         username: this.username,
         nicename: this.nickname,
         room: this.room,
-        groupName: this.groupname,
+        groupName: !this.params ? this.groupname : this.params,
         status: this.value === 2 ? '' : this.value,
         f_status: this.value1 === 2 ? '' : this.value1,
         a_status: this.value2 === 2 ? '' : this.value2,
@@ -126,8 +137,8 @@ export default {
       }
     },
     handleLookMsg(row) {
-      // this.$store.dispatch('changeGroupBoxShow', row)
-      console.log(row)
+      this.userChange = row
+      this.$store.dispatch('changeUserBoxShow', row)
     },
     handleStatus(row) {
       this.$store.dispatch('userBoxOpen', row)
