@@ -241,7 +241,7 @@ export default {
       if (!row.roomId) {
         return '未分配'
       }
-      return row.roomId + '号'
+      return row.roomId
     },
     formDates(row, column) {
       const date = row[column.property]

@@ -25,6 +25,7 @@ export default {
     return {
       formLabelWidth: '100px',
       loading: false,
+      bigSize: 0,
       ruleForm: {
         username: '',
         password: '',
@@ -61,8 +62,16 @@ export default {
     }
   },
   methods: {
-    handleFile(file) {
-      console.log(file)
+    handleFile(e) {
+      const inputDOM = e.size
+      const size = Math.floor(inputDOM / 1024)
+      if (size > 100) {
+        // 这里可以加个文件大小控制
+        this.$message({ message: '头像不能大于100k', type: 'error' })
+        this.bigSize = 1
+        return false
+      }
+      this.bigSize = 0
     },
     // handleEdit() {
     //   console.log(111)
@@ -80,9 +89,17 @@ export default {
       this.$store.dispatch('findUser', { page: val })
     },
     onConfirm() {
-      this.loading = true
+      const file = !document.querySelector('.img-inputer__preview-img')
+        ? ''
+        : document.querySelector('.img-inputer__preview-img').src
+      this.ruleForm.file = file
+      if (this.bigSize === 1) {
+        this.$message({ message: '图标不能大于100k', type: 'error' })
+        return
+      }
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
+          this.loading = true
           this.$store
             .dispatch('addUsers', this.ruleForm)
             .then(rs => {

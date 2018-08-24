@@ -54,9 +54,9 @@ export default {
     handleFile(e) {
       const inputDOM = e.size
       const size = Math.floor(inputDOM / 1024)
-      if (size > 200) {
+      if (size > 100) {
         // 这里可以加个文件大小控制
-        this.$message({ message: '图标不能大于200k', type: 'error' })
+        this.$message({ message: '头像不能大于100k', type: 'error' })
         this.bigSize = 1
         return false
       }
@@ -68,7 +68,7 @@ export default {
         : document.querySelector('.img-inputer__preview-img').src
       this.ruleForm.file = file
       if (this.bigSize === 1) {
-        this.$message({ message: '图标不能大于200k', type: 'error' })
+        this.$message({ message: '图标不能大于100k', type: 'error' })
         return
       }
       this.$refs.ruleForm.validate(valid => {
@@ -85,7 +85,7 @@ export default {
           this.loading = true
           userModules.updateUser(dataset).then(result => {
             this.$message({
-              message: `更新资料成功`,
+              message: `更新资料成功(如果您更新头像,将在下次登陆后生效)`,
               type: 'success'
             })
             this.dialogOff()
