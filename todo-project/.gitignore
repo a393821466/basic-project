@@ -3,10 +3,18 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
-*.iml
-out
-gen
+.DS_Store
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 
-node_modules
-dist
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
