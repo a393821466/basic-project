@@ -1,22 +1,16 @@
 <template>
     <div id="app">
-        <div id="cover"></div>
-        <Header></Header>
-        <Todo></Todo>
-        <Footer></Footer>
+      {{da}}
     </div>
 </template>
 
 <script>
-import Header from './layout/header.vue'
-import Footer from './layout/footer.jsx'
-import Todo from './view/todo/todo.vue'
 
 export default {
-  components: {
-    Header,
-    Footer,
-    Todo
+  data () {
+    return {
+      da: '担惊受恐'
+    }
   }
 }
 </script>
@@ -30,16 +24,5 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-}
-
-#cover {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #999;
-    opacity: 0.9;
-    z-index: -1;
 }
 </style>

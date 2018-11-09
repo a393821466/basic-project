@@ -25,8 +25,7 @@ const devServer = {
     errors: true // 有错误显示在网页
   },
   proxy: {
-    '/api': 'http://127.0.0.1:3333',
-    '/user': 'http://127.0.0.1:3333'
+    '/api': 'http://127.0.0.1:3333'
   },
   hot: true // 热部署
   // open: true // 打开游览器
