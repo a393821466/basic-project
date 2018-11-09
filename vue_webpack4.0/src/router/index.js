@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 /* Layout */
-import Layout from '../components/layout/Layout'
+// import Layout from '../components/layout/Layout'
 
 Vue.use(Router)
 

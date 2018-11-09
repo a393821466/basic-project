@@ -10,7 +10,7 @@ trim_trailing_thitespace = true
 
 # Matches multiple files with brace expansion notation
 # Set default
-[*.{js,vue,less}]
+[*.{js,vue,stylus}]
 charset = utf-8
 indent_style = space
 indent_size = 2
