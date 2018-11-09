@@ -9,9 +9,9 @@
     "build": "yarn clean && yarn rbuild",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
     "clean": "rimraf dist",
-    "precommit": "yarn lint",
-    "lint": "eslint --ext .js --ext .jsx --ext .vue client/",
-    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue client/"
+    "precommit": "npm run lint",
+    "lint": "eslint --ext .js --ext .jsx --ext .vue src/",
+    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/"
   },
   "author": "",
   "license": "ISC",
