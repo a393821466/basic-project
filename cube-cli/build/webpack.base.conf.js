@@ -6,7 +6,7 @@ const vueLoaderConfig = require('./vue-loader.conf')
 const TransformModulesPlugin = require('webpack-transform-modules-plugin')
 const PostCompilePlugin = require('webpack-post-compile-plugin')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
