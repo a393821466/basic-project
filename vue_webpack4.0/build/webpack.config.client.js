@@ -24,6 +24,9 @@ const devServer = {
   overlay: {
     errors: true // 有错误显示在网页
   },
+  historyApiFallback:{
+    index:'/index.html'
+  },
   proxy: {
     '/api': 'http://127.0.0.1:3333'
   },
