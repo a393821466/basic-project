@@ -1,30 +1,30 @@
 <template>
   <div id="app">
-    <div class="header_fixed">
-      <p class="header_back">
-        <!-- <i class="cubeic-back"></i> -->
-      </p>
-      <h1 class="title">首页</h1>
-      <p class="entry">
+    <section class="header_fixed">
+      <section class="home_left"></section>
+      <section class="home_right entry">
         <span class="svg-container" v-show="!goBakcks">
           <svg-icon icon-class="logout"></svg-icon>
         </span>
         <router-link to='/login' class="svg-container">
-          <i class="icon_login">
-            <svg-icon icon-class="users"></svg-icon>
-          </i>
+          <svg-icon icon-class="users"></svg-icon>
+          <p>登录</p>
         </router-link>
-      </p>
-    </div>
-    <section class="cube-content" ref="mfct">
+      </section>
+    </section>
+    <section class="cube-content middle-content" ref="mfct">
+      <banner/>
       <p @click="go">点击</p>
     </section>
-    <cube-view></cube-view>
+    <layout-view></layout-view>
+    <footer-view></footer-view>
   </div>
 </template>
 
 <script>
-  import CubeView from './views/layoutView'
+  import LayoutView from './views/layoutView'
+  import Banner from './components/banner/'
+  import FooterView from './components/layout/footer'
   export default {
     data() {
       return {
@@ -44,7 +44,9 @@
       }
     },
     components: {
-      CubeView
+      LayoutView,
+      FooterView,
+      Banner
     }
   }
 </script>
@@ -54,10 +56,45 @@
 
 .cube-content
   position absolute
-  top 44px
+  top 50px
   left 0
   right 0
   bottom 0
   overflow scroll
   -webkit-overflow-scrolling touch
+  padding 0 12px
+.header_fixed
+  z-index 10
+  position absolute
+  right 0
+  left 0
+  height 50px
+  line-height 50px
+  padding 0 12px
+  text-align center
+  -webkit-backface-visibility hidden
+  backface-visibility hidden
+  display flex
+  .home_left
+    flex 0 0 70%
+    width 70%
+  .entry
+    flex 0 0 30%
+    width 30%
+    .svg-container
+      font-size 13px
+      height 14px
+      p
+        float right
+        padding 0 5px
+      .svg-icon
+        width 18px
+        height 18px
+        border-radius 50%
+        background #eebe4d
+        fill currentColor
+        color #eee
+        float right
+        position relative
+        top 14px
 </style>

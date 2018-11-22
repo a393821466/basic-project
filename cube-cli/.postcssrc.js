@@ -6,7 +6,8 @@ module.exports = {
     "postcss-import": {},
     "autoprefixer": {},
     "postcss-px2rem": {
-      "remUnit": 37.5
+      "remUnit": 35
     }
   }
+
 }

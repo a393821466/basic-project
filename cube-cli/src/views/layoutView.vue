@@ -1,16 +1,27 @@
 <template>
-  <transition name="page-move">
-    <router-view class="cube-view"></router-view>
+  <transition :name="active">
+    <router-view class="pages-view"></router-view>
   </transition>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  export default {
+    data() {
+      return {
+        active: 'page-move'
+      }
+    }
+  }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
 .page-move-enter, .page-move-leave-active
   transform translate(100%, 0)
 .page-move-enter-active, .page-move-leave-active
-  transition transform 0.3s
+  transition transform 0.2s
+
+.page-fade-enter, .page-fade-leave-active
+  opacity 0
+.page-fade-enter-active, .page-fade-leave-active
+  transition opacity .2s
 </style>

@@ -1,9 +1,10 @@
 // import Home from '@/App'
-import userCenter from '@/views/userCenter/index'
+import Login from '@/views/index/login/index'
+import UserCenter from '@/views/userCenter/index'
 const vueRouter = [
-  // { path: '/home', component: Home, hidden: true },
-  { path: '/userCenter', component: userCenter, hidden: true }
-  // { path: '/', redirect: '/home', hidden: true },
+  { path: '/login', component: Login, name: 'login' },
+  { path: '/userCenter', component: UserCenter, name: 'UserCenter' }
+  // { path: '/login', redirect: '/home', hidden: true }
   // { path: '*', redirect: '/', hidden: true }
 ]
 
