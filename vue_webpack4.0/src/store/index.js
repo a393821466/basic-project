@@ -1,4 +1,4 @@
-import Vuex from 'vue'
+import Vuex from 'vuex'
 import defaultState from './state'
 import mutations from './mutations'
 import getters from './getters'
