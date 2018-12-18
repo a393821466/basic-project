@@ -1,0 +1,103 @@
+.wrapper
+  height 352px
+.ms-Action
+  .ms-Action-input
+    padding 10px 15px
+    border-top 1px solid #eee
+    border-bottom 1px solid #eee
+    position relative
+    display flex
+    font-size 14px
+    .title
+      flex 1
+      box-flex 1
+    .content_txt
+      color #999
+      flex 1
+      box-flex 1
+      text-align right
+      margin-right 15px
+    i
+      font-style normal
+      color #999
+      position absolute
+      right 14px
+      top 50%
+      margin-top -6px
+  .ms-mask
+    position fixed
+    width 100%
+    height 100%
+    left 0
+    top 0
+    background rgba(0, 0, 0, 0.6)
+    z-index 998
+.over-enter-active, .over-leave-active
+  transition all 0.3s ease-out
+.over-enter
+  transform translateY(50%)
+  opacity 0
+.over-leave-active
+  transform translateY(80%)
+  opacity 0
+.fade-enter-active, .fade-leave-active
+  transition all 0.2s ease-out
+.fade-enter, .fade-leave-to
+  opacity 0
+.ms-radio
+  width 100%
+  height 60%
+  background #fdfdfd
+  position fixed
+  left 0
+  bottom 0
+  z-index 9999
+  .Radio_title
+    text-align center
+    line-height 45px
+    position relative
+    color #666
+    border-bottom 1px dashed #eee
+    background #f8f8f8
+    height 45px
+    p
+      font-size 16px
+    i
+      font-style normal
+      position absolute
+      right 10px
+      top 0
+      width 42px
+      height 42px
+      font-size 18px
+  .bankListBox
+    width 100%
+    overflow-x hidden
+    -webkit-overflow-scrolling touch
+    // .bankList
+    // flex-wrap wrap
+    .radio_form
+      width 100%
+      position relative
+      input
+        width 100%
+        height 100%
+        opacity 0
+        filter alpha opacity = 0
+        position absolute
+      label
+        border 1px solid #eee
+        display block
+        font-weight normal
+        font-size 14px
+        height 50px
+        line-height 50px
+        text-indent 10px
+        img
+          width 30px
+          height 30px
+          float left
+          margin 10px 0px 0px 5px
+    .radio_form input:checked + label
+      color #00a4ff
+      border solid 1px #00a4ff

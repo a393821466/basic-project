@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>交易</title>
+    <desc>Created with Sketch.</desc>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="交易" transform="translate(-157.000000, 1.000000)">
+            <g transform="translate(158.000000, 0.000000)">
+                <circle id="椭圆形" stroke="#F1F1F1" fill="#FFFFFF" cx="30" cy="30" r="30"></circle>
+                <circle id="椭圆形-copy-8" fill="#6B89FE" cx="30" cy="30" r="26"></circle>
+                <text id="¥" font-family="RTWSYueRoudGoDemo-Regular, RTWS YueRoundedGothic Demo" font-size="20" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="24" y="31">¥</tspan>
+                </text>
+                <path d="M19,24 C19,30.0751322 23.9248678,35 30,35 M41,24 C41,17.9248678 36.0751322,13 30,13" id="形状" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" transform="translate(30.000000, 24.000000) rotate(-77.000000) translate(-30.000000, -24.000000) "></path>
+                <path d="M16.4699515,27.6077848 C16.4699515,28.7123543 18.7085278,29.6077848 21.4699515,29.6077848" id="路径" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" transform="translate(18.969952, 28.607785) rotate(-104.000000) translate(-18.969952, -28.607785) "></path>
+                <path d="M38.4699515,18.6077848 C38.4699515,19.7123543 40.7085278,20.6077848 43.4699515,20.6077848" id="路径" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" transform="translate(40.969952, 19.607785) rotate(-284.000000) translate(-40.969952, -19.607785) "></path>
+                <path d="M19,24 C19,30.0751322 23.9248678,35 30,35 M41,24 C41,17.9248678 36.0751322,13 30,13" id="形状" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" transform="translate(30.000000, 24.000000) rotate(-9.000000) translate(-30.000000, -24.000000) "></path>
+                <text font-family="PingFang-SC-Bold, PingFang SC" font-size="10" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="20" y="48">交易</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

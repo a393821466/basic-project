@@ -1,0 +1,78 @@
+[
+  {
+    "aricleId": 1,
+    "bankCode": "sgBank",
+    "bankName":"中国工商银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 2,
+    "bankCode": "nyBank",
+    "bankName":"中国农业银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 3,
+    "bankCode": "jsBank",
+    "bankName":"中国建设银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 4,
+    "bankCode": "jtBank",
+    "bankName":"中国交通银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 5,
+    "bankCode": "yzBank",
+    "bankName":"中国邮政银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 6,
+    "bankCode": "paBank",
+    "bankName":"中国平安银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 7,
+    "bankCode": "pfBank",
+    "bankName":"中国浦发银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 8,
+    "bankCode": "chinaBank",
+    "bankName":"中国银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 9,
+    "bankCode": "xysBank",
+    "bankName":"中国信用社",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 10,
+    "bankCode": "china**Bank",
+    "bankName":"中国**银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 11,
+    "bankCode": "china**Bank",
+    "bankName":"中国**银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 12,
+    "bankCode": "china**Bank",
+    "bankName":"中国**银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 13,
+    "bankCode": "china**Bank",
+    "bankName":"中国**银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 14,
+    "bankCode": "china**Bank",
+    "bankName":"中国**银行",
+    "src": "/static/image/bank.jpg"
+  },{
+    "aricleId": 15,
+    "bankCode": "china**Bank",
+    "bankName":"中国**银行",
+    "src": "/static/image/bank.jpg"
+  }
+]

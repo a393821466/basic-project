@@ -1,0 +1,51 @@
+.wrapper
+  overflow hidden
+  // height calc(100% + 1px)
+  .pullup
+    color #ccc
+    text-align center
+  .pulldown-tip
+    position absolute
+    left 0
+    top 0
+    width 100%
+    height 50px
+    color #ccc
+    text-align center
+    z-index 2000
+    .loading_icon
+      width 20px
+      height 20px
+      fill #ccc
+      position absolute
+      left 50%
+      margin-left -40px
+      top 5px
+  .pulldown-tip
+    top -45px
+    height 35px
+    line-height 35px
+    z-index 1
+  .pull-icon
+    position absolute
+    top 0
+    left 30%
+    color #a5a1a1
+    font-size 1.5em
+    transition all 0.15s ease-in-out
+  .pull-icon.icon-rotate
+    transform rotate(180deg)
+  .loading-container
+    position absolute
+    height $cube-size
+    width $cube-size
+    left 35%
+    top 50%
+    transform translate(-50%, -50%)
+    perspective 40px
+.rotateLeft
+  transition all 0.3s ease
+  transform rotate(0deg)
+.rotateRight
+  transition all 0.3s ease
+  transform rotate(-180deg)
