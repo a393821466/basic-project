@@ -58,7 +58,7 @@
     "jest-serializer-vue": "^0.3.0",
     "mint-ui": "^2.2.13",
     "mockjs": "^1.0.1-beta3",
-    "nightwatch": "^0.9.12",
+    "nightwatch": "^2.6.10",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
